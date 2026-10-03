@@ -23,10 +23,44 @@
   <meta name="twitter:image" content="https://nickcastrobuilds.com/images/og.png">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://nickcastrobuilds.com/#website",
+  "url": "https://nickcastrobuilds.com/",
+  "name": "Nick Castro",
+  "description": "I'm Nick Castro. I use AI tools like Claude and Replit to turn ideas into live websites, fast. A business site, a web app, even a kids' book.",
+  "inLanguage": "en",
+  "publisher": {
+    "@id": "https://nickcastrobuilds.com/#person"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://nickcastrobuilds.com/#person",
+  "name": "Nick Castro",
+  "url": "https://nickcastrobuilds.com/",
+  "email": "mailto:nickcastro1520@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/nicolas-castro-4081545b"
+  ],
+  "description": "A builder who learned to ship with AI, using tools like Claude and Replit to go from idea to live site quickly.",
+  "knowsAbout": [
+    "Website development",
+    "AI tools",
+    "Claude",
+    "Replit"
+  ],
+  "image": "https://nickcastrobuilds.com/images/og.png"
+}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -63,7 +97,7 @@
         <div class="grid">
           <article class="card">
             <div class="media">
-              <img src="images/aaproroofers.png" width="1440" height="900" loading="lazy"
+              <img src="images/aaproroofers-1000.webp" srcset="images/aaproroofers-600.webp 600w, images/aaproroofers-1000.webp 1000w" sizes="(min-width: 960px) 360px, (min-width: 640px) 45vw, calc(100vw - 40px)" width="1440" height="900" fetchpriority="high" decoding="async"
                    alt="Screenshot of the A&amp;A Professional Roofers website homepage">
             </div>
             <div class="card-body">
@@ -76,7 +110,7 @@
 
           <article class="card">
             <div class="media">
-              <img src="images/robloxideas.png" width="1440" height="900" loading="lazy"
+              <img src="images/robloxideas-1000.webp" srcset="images/robloxideas-600.webp 600w, images/robloxideas-1000.webp 1000w" sizes="(min-width: 960px) 360px, (min-width: 640px) 45vw, calc(100vw - 40px)" width="1440" height="900" loading="lazy" decoding="async"
                    alt="Screenshot of the Roblox Idea Generator web app">
             </div>
             <div class="card-body">
@@ -89,7 +123,7 @@
 
           <article class="card">
             <div class="media media-book">
-              <img src="images/book.jpg" width="832" height="1248" loading="lazy"
+              <img src="images/book-400.webp" srcset="images/book-300.webp 300w, images/book-400.webp 400w" sizes="160px" width="832" height="1248" loading="lazy" decoding="async"
                    alt="Cover of The Smart Soccer Ball Mystery: Machine Learning for Kids, Book 1, by Nick and Nancy Castro">
             </div>
             <div class="card-body">
