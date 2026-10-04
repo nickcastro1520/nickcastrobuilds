@@ -5,7 +5,7 @@
 ## Projects
 - [Does AI Know My Business? (AI Visibility Check)](https://doesaiknowmybusiness.com/): Free tool that shows whether AI recommends a local business. An AI agent runs live Google searches, then gives a 0–100 score, the competitors AI names instead, a website check, and a fix plan with ready-to-paste schema code. English and Spanish.
 - [A&A Professional Roofers](https://www.aaproroofers.com/): Business website for A&A Professional Roofers LLC, a Chicago-area roofing company (services, gallery, service areas, free-quote form, Spanish-speaking callout).
-- [Roblox Idea Generator](https://robloxideas.com/): Free Roblox game idea generator, built for and with his sons.
+- [Roblox Idea Generator](https://robloxideas.com/): Free Roblox game idea generator for developers: each idea comes with a core loop, a monetization plan with suggested Robux prices, a retention hook, a scope estimate, and a free one-page design doc.
 - [The Smart Soccer Ball Mystery: Machine Learning for Kids – Book 1](https://a.co/d/09uH5j59): 24-page picture book for ages 6–10, co-written with Nancy Castro, that teaches how AI learns from data.
 - [AI Tools Pulse](https://open.spotify.com/show/2nHucl9A86Ingv3WVtQIh2): Short daily podcast about new AI tools.
 
