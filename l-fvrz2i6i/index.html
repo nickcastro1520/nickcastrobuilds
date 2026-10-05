@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0f172a">
+<title>AI Interview Study Lab — Nick</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{
+  --bg:#0b1220; --bg2:#111827; --card:#151c2c; --card2:#1a2336;
+  --ink:#e8eef9; --muted:#94a3b8; --faint:#64748b;
+  --line:#243044; --accent:#38bdf8; --accent2:#818cf8; --ok:#34d399;
+  --warn:#fbbf24; --bad:#f87171; --pink:#f472b6;
+  --radius:16px; --nav-h:56px;
+  --shadow:0 8px 30px -12px rgba(0,0,0,.55);
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+h1,h2,h3,h4{line-height:1.2;letter-spacing:-.02em;margin:0 0 .5em}
+p{margin:0 0 .85em}
+button,input,textarea,select{font:inherit}
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#0b1220;padding:8px 14px;border-radius:8px;z-index:100;font-weight:700}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid #7dd3fc;outline-offset:2px}
+.topbar{position:sticky;top:0;z-index:40;height:var(--nav-h);display:flex;align-items:center;gap:10px;padding:0 14px;background:rgba(11,18,32,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar h1{font-size:15px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-wrap{flex:0 0 88px}
+.prog{height:8px;background:#1e293b;border-radius:999px;overflow:hidden}
+.prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px;transition:width .3s}
+.prog-label{font-size:11px;color:var(--muted);text-align:right;margin-top:2px}
+.menu-btn{width:42px;height:42px;border:0;border-radius:10px;background:#1e293b;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px}
+.drawer{position:fixed;inset:var(--nav-h) 0 0 auto;width:min(320px,88vw);background:var(--bg2);border-left:1px solid var(--line);padding:12px;overflow:auto;transform:translateX(100%);transition:transform .25s;z-index:35;box-shadow:var(--shadow)}
+.drawer.open{transform:none}
+.drawer a{display:block;padding:11px 12px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
+.drawer a:hover,.drawer a:focus{background:#1e293b;color:var(--accent)}
+.drawer .sec{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);padding:14px 12px 6px;font-weight:700}
+.backdrop{position:fixed;inset:var(--nav-h) 0 0 0;background:rgba(0,0,0,.45);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.backdrop.show{opacity:1;pointer-events:auto}
+main{max-width:720px;margin:0 auto;padding:18px 14px 80px}
+.hero{background:radial-gradient(700px 280px at 20% -20%,rgba(56,189,248,.18),transparent 60%),radial-gradient(500px 220px at 100% 0,rgba(129,140,248,.16),transparent 55%);border:1px solid var(--line);border-radius:20px;padding:22px 18px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b1220;background:var(--accent);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.hero h2{font-size:clamp(1.45rem,5vw,1.9rem);margin-bottom:8px}
+.hero p{color:var(--muted);margin-bottom:0}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;background:#1e293b;color:var(--muted);border:1px solid var(--line)}
+.topic{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:0 0 16px;box-shadow:var(--shadow)}
+.topic-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.tnum{flex:0 0 auto;width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b1220}
+.topic h3{font-size:1.2rem;margin:0 0 2px}
+.say{background:#0f172a;border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:16px}
+.say strong{color:var(--accent);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.analogy,.tie{font-size:15px;color:var(--muted);margin:8px 0}
+.analogy b,.tie b{color:var(--ink)}
+.widget{margin-top:14px;padding:14px;background:var(--card2);border:1px solid var(--line);border-radius:14px}
+.widget h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:0 0 10px}
+.hint{font-size:12px;color:var(--faint);margin-top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:10px 16px;border-radius:12px;border:0;font-weight:700;font-size:15px;cursor:pointer;-webkit-tap-highlight-color:transparent;color:#0b1220;background:var(--accent)}
+.btn:active{transform:scale(.98)}
+.btn-ghost{background:#1e293b;color:var(--ink);border:1px solid var(--line)}
+.btn-ok{background:var(--ok)}
+.btn-warn{background:var(--warn)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn-sm{min-height:38px;padding:8px 12px;font-size:14px;border-radius:10px}
+.field{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0f172a;color:var(--ink);resize:vertical}
+.field:focus{outline:none;border-color:var(--accent)}
+label.lbl{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.tokens{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;min-height:40px}
+.tok{padding:6px 10px;border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:600;color:#0b1220}
+.tok:nth-child(6n+1){background:#7dd3fc}
+.tok:nth-child(6n+2){background:#a5b4fc}
+.tok:nth-child(6n+3){background:#f9a8d4}
+.tok:nth-child(6n+4){background:#86efac}
+.tok:nth-child(6n+5){background:#fcd34d}
+.tok:nth-child(6n+6){background:#fdba74}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.stat{background:#0f172a;border-radius:10px;padding:10px;text-align:center}
+.stat b{display:block;font-size:1.25rem;color:var(--accent)}
+.stat span{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.backpack{position:relative;border:2px dashed var(--line);border-radius:14px;padding:12px;min-height:120px;background:#0f172a}
+.bp-fill{height:18px;background:#1e293b;border-radius:999px;overflow:hidden;margin-bottom:10px}
+.bp-fill>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ok),var(--warn),var(--bad));transition:width .35s}
+.bp-items{display:flex;flex-wrap:wrap;gap:6px}
+.bp-item{padding:6px 10px;border-radius:8px;background:#1e293b;border:1px solid var(--line);font-size:13px;font-weight:600}
+.bp-item.overflow{background:rgba(248,113,113,.2);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.bp-msg{margin-top:10px;font-size:14px;font-weight:700;min-height:1.4em}
+.emap{position:relative;width:100%;aspect-ratio:1/1;max-height:340px;background:#0f172a;border-radius:14px;border:1px solid var(--line);overflow:hidden;touch-action:manipulation}
+.edot{position:absolute;transform:translate(-50%,-50%);padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700;background:#1e293b;border:1px solid var(--line);color:var(--ink);cursor:pointer;white-space:nowrap;z-index:1}
+.edot:hover,.edot:focus,.edot.active{background:var(--accent);color:#0b1220;border-color:var(--accent);z-index:2}
+.edot.near{background:rgba(52,211,153,.25);border-color:var(--ok);color:var(--ok)}
+.enn{margin-top:10px;font-size:14px;color:var(--muted);min-height:2.6em}
+.rag-steps{display:grid;gap:8px}
+.rag-step{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:#0f172a;border:1px solid var(--line);opacity:.45;transition:opacity .25s,border-color .25s}
+.rag-step.on{opacity:1;border-color:var(--accent)}
+.rag-step .n{flex:0 0 28px;height:28px;border-radius:8px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.rag-step.on .n{background:var(--accent);color:#0b1220}
+.rag-step p{margin:0;font-size:14px}
+.rag-step strong{display:block;font-size:14px}
+.temp-out{margin-top:12px;padding:12px;border-radius:12px;background:#0f172a;border:1px solid var(--line);font-size:15px;min-height:90px}
+.range{width:100%;accent-color:var(--accent);height:28px}
+.temp-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:2px}
+.mcp{display:grid;gap:10px}
+.mcp-brain{text-align:center;padding:16px;border-radius:14px;background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(129,140,248,.2));border:1px solid var(--accent);font-weight:800}
+.mcp-plug{text-align:center;font-size:13px;color:var(--muted);font-weight:700}
+.mcp-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mcp-tool{padding:12px;border-radius:12px;background:#0f172a;border:1px solid var(--line);text-align:center;font-size:13px;font-weight:700}
+.aloop{display:grid;gap:8px}
+.aloop-item{padding:12px;border-radius:12px;background:#0f172a;border:1px solid var(--line);opacity:.4;transition:opacity .25s,border-color .25s}
+.aloop-item.on{opacity:1;border-color:var(--accent2)}
+.aloop-item strong{color:var(--accent2)}
+.fc-area{perspective:1000px}
+.fc{position:relative;min-height:180px;cursor:pointer;border-radius:14px;transform-style:preserve-3d;transition:transform .45s}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;background:#0f172a;border:1px solid var(--line)}
+.fc-back{transform:rotateY(180deg);background:linear-gradient(160deg,#0f172a,#1a2336)}
+.fc-face .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:800;margin-bottom:8px}
+.fc-face p{margin:0;font-size:17px;font-weight:600}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px;flex-wrap:wrap}
+.fc-count{font-size:13px;color:var(--muted);font-weight:700}
+.q-opt{display:block;width:100%;text-align:left;padding:12px 14px;margin:0 0 8px;border-radius:12px;border:1px solid var(--line);background:#0f172a;color:var(--ink);cursor:pointer;font-weight:600;font-size:15px}
+.q-opt:hover{border-color:var(--accent)}
+.q-opt.correct{border-color:var(--ok);background:rgba(52,211,153,.12);color:var(--ok)}
+.q-opt.wrong{border-color:var(--bad);background:rgba(248,113,113,.12);color:var(--bad)}
+.q-fb{margin-top:8px;font-size:14px;font-weight:600;min-height:1.4em}
+.iq{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;overflow:hidden;background:#0f172a}
+.iq>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:10px;align-items:center;-webkit-tap-highlight-color:transparent}
+.iq>summary::-webkit-details-marker{display:none}
+.iq>summary::after{content:"+";font-size:20px;color:var(--accent);font-weight:400}
+.iq[open]>summary::after{content:"\2013"}
+.iq .ans{padding:0 16px 16px;color:var(--muted);font-size:15px;white-space:pre-wrap}
+.iq .ans b{color:var(--ink)}
+.gloss-list{display:grid;gap:8px}
+.g-item{padding:12px 14px;border-radius:12px;background:#0f172a;border:1px solid var(--line)}
+.g-item strong{display:block;color:var(--accent);margin-bottom:2px}
+.g-item span{font-size:14px;color:var(--muted)}
+.tprog{margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tprog .btn{flex:1 1 auto}
+.done-badge{font-size:12px;font-weight:800;color:var(--ok);display:none}
+.topic.done .done-badge{display:inline}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:20px 14px 40px}
+@media (min-width:640px){
+  main{padding:24px 20px 100px}
+  .hero{padding:28px 24px}
+  .topic{padding:22px}
+  .mcp-tools{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div style="flex:1;min-width:0">
+    <h1>AI Interview Study Lab</h1>
+    <div class="prog-wrap" aria-hidden="true"><div class="prog"><i id="gprog"></i></div><div class="prog-label"><span id="gprogTxt">0%</span> done</div></div>
+  </div>
+  <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer" aria-label="Open topics menu">&#9776;</button>
+</header>
+<div class="backdrop" id="backdrop" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Topics">
+  <div class="sec">Learn</div>
+  <a href="#tokens">1. Tokens</a>
+  <a href="#context">2. Context window</a>
+  <a href="#embeddings">3. Embeddings</a>
+  <a href="#vectordb">4. Vector databases</a>
+  <a href="#rag">5. RAG</a>
+  <a href="#mcp">6. MCP</a>
+  <a href="#agents">7. Agents</a>
+  <a href="#prompting">8. Prompting</a>
+  <a href="#finetune">9. Fine-tune vs RAG</a>
+  <a href="#hallucinations">10. Hallucinations</a>
+  <a href="#temperature">11. Temperature</a>
+  <a href="#evals">12. Evals</a>
+  <a href="#automation">13. Automation tools</a>
+  <a href="#guardrails">14. Guardrails</a>
+  <a href="#cost">15. Cost &amp; latency</a>
+  <div class="sec">Practice</div>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#interview">Interview answers</a>
+  <a href="#glossary">Glossary</a>
+</nav>
+
+<main id="main">
+<section class="hero">
+  <span class="tag">Private study page</span>
+  <h2>Talk AI like you built it</h2>
+  <p>Plain-English definitions, analogies, and interactive toys — tied to your real work (doesaiknowmybusiness.com, AI Tools Pulse, robloxideas.com, local business sites). No Python. Interview-ready answers in your voice.</p>
+  <div class="chip-row">
+    <span class="chip">Mobile-first</span>
+    <span class="chip">Progress saved</span>
+    <span class="chip">No trackers</span>
+    <span class="chip">Hidden page</span>
+  </div>
+</section>
+
+<article class="topic" id="tokens" data-topic="tokens">
+  <div class="topic-head"><div class="tnum">1</div><div><h3>Tokens</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Tokens are the little chunks of text an AI model actually reads and writes — not always whole words.</div>
+  <p class="analogy"><b>Analogy:</b> Like LEGO bricks. The sentence “Chicago trees” might become a few bricks: “Chi”, “cago”, “ trees”. The model builds meaning brick by brick.</p>
+  <p class="tie"><b>Your work:</b> When your AI Visibility Check agent runs searches and writes a score report, every word it reads and writes costs tokens. Shorter prompts = cheaper runs.</p>
+  <div class="widget">
+    <h4>Tokenizer playground <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--warn)">(approx)</span></h4>
+    <label class="lbl" for="tokIn">Type anything</label>
+    <textarea id="tokIn" class="field" rows="3" placeholder="Does AI know my business in Chicago?">Does AI know my business in Chicago?</textarea>
+    <div class="tokens" id="tokOut" aria-live="polite"></div>
+    <div class="stats">
+      <div class="stat"><b id="tokCount">0</b><span>Tokens</span></div>
+      <div class="stat"><b id="tokChars">0</b><span>Chars</span></div>
+      <div class="stat"><b id="tokCost">$0</b><span>~Cost*</span></div>
+    </div>
+    <p class="hint">*Rough estimate at ~$0.50 / 1M input tokens. Real tokenizers differ. This is for intuition only.</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="tokens">Mark got it</button></div>
+</article>
+
+<article class="topic" id="context" data-topic="context">
+  <div class="topic-head"><div class="tnum">2</div><div><h3>Context window</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>The context window is how much text the model can hold in its “working memory” at once — the prompt, the docs you paste, and its reply all share that space.</div>
+  <p class="analogy"><b>Analogy:</b> A backpack. Stuff it with a long PDF, chat history, and instructions — eventually things fall out (get truncated) or the trip gets expensive.</p>
+  <p class="tie"><b>Your work:</b> Your job-hunt assistant keeps chat history and job details in context. Pasting a huge resume + 10 job posts can overflow a small window.</p>
+  <div class="widget">
+    <h4>Backpack simulator (8K token window)</h4>
+    <div class="bp-fill" aria-hidden="true"><i id="bpBar"></i></div>
+    <div class="backpack"><div class="bp-items" id="bpItems"></div></div>
+    <p class="bp-msg" id="bpMsg" aria-live="polite"></p>
+    <div class="btn-row">
+      <button type="button" class="btn btn-sm btn-ghost" data-bp="sys">+ System prompt (400)</button>
+      <button type="button" class="btn btn-sm btn-ghost" data-bp="job">+ Job post (1.2K)</button>
+      <button type="button" class="btn btn-sm btn-ghost" data-bp="resume">+ Resume (2K)</button>
+      <button type="button" class="btn btn-sm btn-ghost" data-bp="pdf">+ PDF dump (5K)</button>
+      <button type="button" class="btn btn-sm btn-ghost" data-bp="chat">+ Chat history (1.5K)</button>
+      <button type="button" class="btn btn-sm" id="bpReset">Reset</button>
+    </div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="context">Mark got it</button></div>
+</article>
+
+<article class="topic" id="embeddings" data-topic="embeddings">
+  <div class="topic-head"><div class="tnum">3</div><div><h3>Embeddings</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>An embedding turns meaning into a list of numbers so a computer can tell which ideas are close — “roofer” sits near “roofing,” not near “pizza.”</div>
+  <p class="analogy"><b>Analogy:</b> Dropping every word on a map. Similar meanings cluster in the same neighborhood.</p>
+  <p class="tie"><b>Your work:</b> If you searched your podcast transcripts for “tools that write emails,” embeddings find episodes about “AI that drafts outreach” even if the exact words differ.</p>
+  <div class="widget">
+    <h4>Meaning map — tap a word to find neighbors</h4>
+    <div class="emap" id="emap" role="img" aria-label="2D map of word embeddings"></div>
+    <p class="enn" id="enn" aria-live="polite">Tap a word to see what’s nearby.</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="embeddings">Mark got it</button></div>
+</article>
+
+<article class="topic" id="vectordb" data-topic="vectordb">
+  <div class="topic-head"><div class="tnum">4</div><div><h3>Vector databases</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>A vector database stores embeddings and finds the closest matches fast — like a search engine for meaning, not exact keywords.</div>
+  <p class="analogy"><b>Analogy:</b> A library sorted by “vibe,” not by alphabet. You ask for “storm damage quotes” and it pulls the nearest shelves.</p>
+  <p class="tie"><b>Your work:</b> For a client site knowledge base (services, FAQs, pricing notes), you’d embed each chunk and store them in a vector DB so the chatbot retrieves the right paragraphs.</p>
+  <div class="widget">
+    <h4>Mini search demo</h4>
+    <label class="lbl" for="vQuery">Ask in plain English</label>
+    <input id="vQuery" class="field" value="Do you fix storm damage roofs in Chicago?">
+    <div class="btn-row"><button type="button" class="btn btn-sm" id="vSearch">Find nearest chunks</button></div>
+    <div id="vResults" class="rag-steps" style="margin-top:12px" aria-live="polite"></div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="vectordb">Mark got it</button></div>
+</article>
+
+<article class="topic" id="rag" data-topic="rag">
+  <div class="topic-head"><div class="tnum">5</div><div><h3>RAG (Retrieval-Augmented Generation)</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>RAG means: look up the right documents first, then let the AI answer using those docs — so answers stay grounded in your stuff, not just the model’s memory.</div>
+  <p class="analogy"><b>Analogy:</b> An open-book test. The AI doesn’t guess from memory; it flips to the right pages, then writes.</p>
+  <p class="tie"><b>Your work:</b> doesaiknowmybusiness.com is RAG-shaped: the agent searches live Google results (retrieve), then scores and explains with sources (generate). Same idea for a business FAQ bot.</p>
+  <div class="widget">
+    <h4>RAG walkthrough</h4>
+    <div class="rag-steps" id="ragSteps">
+      <div class="rag-step" data-i="0"><div class="n">1</div><div><strong>Question</strong><p>“Does Aguilar Roofing show up when people ask AI for a Chicago roofer?”</p></div></div>
+      <div class="rag-step" data-i="1"><div class="n">2</div><div><strong>Retrieve</strong><p>Search the web / your docs. Pull top chunks: Google results, reviews, site status.</p></div></div>
+      <div class="rag-step" data-i="2"><div class="n">3</div><div><strong>Stuff the prompt</strong><p>Put those chunks into the context window with clear instructions.</p></div></div>
+      <div class="rag-step" data-i="3"><div class="n">4</div><div><strong>Generate + cite</strong><p>Model writes a score and fix plan, pointing back at the sources.</p></div></div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-sm" id="ragNext">Next step</button>
+      <button type="button" class="btn btn-sm btn-ghost" id="ragReset">Reset</button>
+    </div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="rag">Mark got it</button></div>
+</article>
+
+<article class="topic" id="mcp" data-topic="mcp">
+  <div class="topic-head"><div class="tnum">6</div><div><h3>MCP (Model Context Protocol)</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>MCP is a standard plug so an AI assistant can safely use tools and data sources — Gmail, Calendar, GitHub, Drive — without a custom integration for each app.</div>
+  <p class="analogy"><b>Analogy:</b> USB-C for AI. One plug shape, many devices. The brain (the model) stays the same; the tools swap.</p>
+  <p class="tie"><b>Your work:</b> Your Grok bots use connectors (Gmail, Calendar, Drive, GitHub). MCP is the idea behind “the bot can read my inbox and draft a reply” without you pasting everything by hand.</p>
+  <div class="widget">
+    <h4>Brain + universal plug</h4>
+    <div class="mcp">
+      <div class="mcp-brain">AI assistant (the brain)</div>
+      <div class="mcp-plug">MCP — universal plug</div>
+      <div class="mcp-tools">
+        <div class="mcp-tool">Gmail</div>
+        <div class="mcp-tool">Calendar</div>
+        <div class="mcp-tool">Drive</div>
+        <div class="mcp-tool">GitHub</div>
+      </div>
+    </div>
+    <p class="hint">Interview line: “MCP lets the model call tools through a shared protocol, so enablement teams can connect systems without rewriting every integration.”</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="mcp">Mark got it</button></div>
+</article>
+
+<article class="topic" id="agents" data-topic="agents">
+  <div class="topic-head"><div class="tnum">7</div><div><h3>Agents &amp; LangChain-style loops</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>An agent is an AI that can plan, use tools, check results, and loop until the job is done — not just answer one prompt.</div>
+  <p class="analogy"><b>Analogy:</b> A new hire with a checklist: think → use a tool → look at the result → decide next step → repeat.</p>
+  <p class="tie"><b>Your work:</b> The visibility check agent: plan searches → call Google → read results → score → write fix plan. LangChain (and similar frameworks) help wire that loop; you don’t need to memorize the API — know the pattern.</p>
+  <div class="widget">
+    <h4>Agent loop</h4>
+    <div class="aloop" id="aloop">
+      <div class="aloop-item" data-i="0"><strong>1. Goal</strong> — “Check if this Chicago shop shows up in AI answers.”</div>
+      <div class="aloop-item" data-i="1"><strong>2. Plan</strong> — Decide which searches / tools to run.</div>
+      <div class="aloop-item" data-i="2"><strong>3. Act</strong> — Call a tool (web search, site fetch).</div>
+      <div class="aloop-item" data-i="3"><strong>4. Observe</strong> — Read the tool output.</div>
+      <div class="aloop-item" data-i="4"><strong>5. Repeat or finish</strong> — More tools, or write the final score + plan.</div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-sm" id="agentNext">Advance loop</button>
+      <button type="button" class="btn btn-sm btn-ghost" id="agentReset">Reset</button>
+    </div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="agents">Mark got it</button></div>
+</article>
+
+<article class="topic" id="prompting" data-topic="prompting">
+  <div class="topic-head"><div class="tnum">8</div><div><h3>Prompting techniques</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Good prompting is clear instructions, examples, constraints, and structure — role, goal, format, and what “good” looks like.</div>
+  <p class="analogy"><b>Analogy:</b> Briefing a contractor. “Fix the roof” fails. “Replace damaged shingles on the south slope, match color, text photos when done” works.</p>
+  <p class="tie"><b>Your work:</b> Outreach texts, site copy, and your bots all run better with role + constraints (“friendly Chicago tone, under 320 chars, no fake metrics”).</p>
+  <div class="widget">
+    <h4>Technique cheat sheet</h4>
+    <div class="rag-steps">
+      <div class="rag-step on"><div class="n">R</div><div><strong>Role</strong><p>“You are a Chicago small-business web coach.”</p></div></div>
+      <div class="rag-step on"><div class="n">G</div><div><strong>Goal</strong><p>“Draft one SMS under 320 characters.”</p></div></div>
+      <div class="rag-step on"><div class="n">E</div><div><strong>Examples</strong><p>Show 1–2 good texts (few-shot).</p></div></div>
+      <div class="rag-step on"><div class="n">C</div><div><strong>Constraints</strong><p>No invented reviews. Spanish option. Tap-to-call CTA.</p></div></div>
+      <div class="rag-step on"><div class="n">F</div><div><strong>Format</strong><p>“Return only the SMS text, no preamble.”</p></div></div>
+    </div>
+    <p class="hint">Also know: chain-of-thought (“think step by step” for reasoning), and tool-calling prompts that list available tools.</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="prompting">Mark got it</button></div>
+</article>
+
+<article class="topic" id="finetune" data-topic="finetune">
+  <div class="topic-head"><div class="tnum">9</div><div><h3>Fine-tuning vs RAG</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>RAG pulls fresh facts into the prompt. Fine-tuning changes the model’s behavior or style by training on examples. Most business Q&amp;A needs RAG first; fine-tune when you need a consistent voice or skill.</div>
+  <p class="analogy"><b>Analogy:</b> RAG = open book on the desk. Fine-tune = sending the employee to a training class so they “just know” the house style.</p>
+  <p class="tie"><b>Your work:</b> Client FAQs and prices change weekly → RAG. Making every reply sound like Nick’s outreach voice → maybe a small fine-tune or strong few-shot prompts (cheaper to start with prompts + RAG).</p>
+  <div class="widget">
+    <h4>Pick the right tool</h4>
+    <div class="btn-row">
+      <button type="button" class="btn btn-sm btn-ghost ft-q" data-a="rag">Facts that change often</button>
+      <button type="button" class="btn btn-sm btn-ghost ft-q" data-a="ft">Always write in one house style</button>
+      <button type="button" class="btn btn-sm btn-ghost ft-q" data-a="rag">Cite sources for trust</button>
+      <button type="button" class="btn btn-sm btn-ghost ft-q" data-a="both">Need style + fresh docs</button>
+    </div>
+    <p class="q-fb" id="ftFb" aria-live="polite">Tap a scenario.</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="finetune">Mark got it</button></div>
+</article>
+
+<article class="topic" id="hallucinations" data-topic="hallucinations">
+  <div class="topic-head"><div class="tnum">10</div><div><h3>Hallucinations</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>A hallucination is when the model says something confident that isn’t true — made-up citations, fake metrics, wrong phone numbers.</div>
+  <p class="analogy"><b>Analogy:</b> A smooth talker who fills gaps instead of saying “I don’t know.”</p>
+  <p class="tie"><b>Your work:</b> You never invent Google review counts in outreach. Same rule for AI: ground answers in search/RAG, ask for sources, and refuse to fabricate.</p>
+  <div class="widget">
+    <h4>How you’d reduce them</h4>
+    <div class="rag-steps">
+      <div class="rag-step on"><div class="n">1</div><div><strong>Ground with RAG / tools</strong><p>Pull real data before answering.</p></div></div>
+      <div class="rag-step on"><div class="n">2</div><div><strong>Ask for citations</strong><p>“Only use the provided sources; say if missing.”</p></div></div>
+      <div class="rag-step on"><div class="n">3</div><div><strong>Lower temperature</strong><p>For factual tasks, stay near 0.</p></div></div>
+      <div class="rag-step on"><div class="n">4</div><div><strong>Validate</strong><p>Check phones, URLs, numbers with a second step or human review.</p></div></div>
+    </div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="hallucinations">Mark got it</button></div>
+</article>
+
+<article class="topic" id="temperature" data-topic="temperature">
+  <div class="topic-head"><div class="tnum">11</div><div><h3>Temperature</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Temperature controls randomness. Low = safe and consistent. High = more creative (and more chaotic).</div>
+  <p class="analogy"><b>Analogy:</b> Low temp = careful tree cut with a checklist. High temp = freeform brainstorming on the whiteboard.</p>
+  <p class="tie"><b>Your work:</b> Scoring AI visibility or writing a legal-ish claim email → low temp. Brainstorming Roblox game ideas → higher temp.</p>
+  <div class="widget">
+    <h4>Slider: same ask, different vibe</h4>
+    <label class="lbl" for="tempRange">Temperature: <span id="tempVal">0.2</span></label>
+    <input type="range" id="tempRange" class="range" min="0" max="1.5" step="0.1" value="0.2">
+    <div class="temp-labels"><span>0 — precise</span><span>1.5 — wild</span></div>
+    <div class="temp-out" id="tempOut" aria-live="polite"></div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="temperature">Mark got it</button></div>
+</article>
+
+<article class="topic" id="evals" data-topic="evals">
+  <div class="topic-head"><div class="tnum">12</div><div><h3>Evals</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Evals are tests for AI systems — a set of example inputs with expected quality — so you know a prompt or model change helped, not just “felt better.”</div>
+  <p class="analogy"><b>Analogy:</b> A practice exam before the real interview. Same questions, score the answers.</p>
+  <p class="tie"><b>Your work:</b> For outreach, keep 20 sample businesses and grade drafts: length, no fake metrics, clear CTA. For the visibility app, spot-check scores against what you see in ChatGPT/Perplexity.</p>
+  <div class="widget">
+    <h4>Tiny eval checklist</h4>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:15px"><input type="checkbox" class="ev"> SMS under 320 chars</label>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:15px"><input type="checkbox" class="ev"> No invented review counts</label>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:15px"><input type="checkbox" class="ev"> Mentions a real proof site (e.g. aaproroofers.com)</label>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:15px"><input type="checkbox" class="ev"> Clear ask (mockup / call)</label>
+    <p class="hint">Interview line: “I keep a small golden set and score outputs when I change prompts.”</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="evals">Mark got it</button></div>
+</article>
+
+<article class="topic" id="automation" data-topic="automation">
+  <div class="topic-head"><div class="tnum">13</div><div><h3>AI automation tools (n8n / Zapier / Make)</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>These tools connect apps with triggers and actions — and now they can call AI in the middle — so work flows without copy-paste.</div>
+  <p class="analogy"><b>Analogy:</b> Dominoes between your apps. New Typeform → AI summarizes → Slack ping → CRM row.</p>
+  <p class="tie"><b>Your work:</b> Job-hunt flows (new listing → draft tailored note), podcast episode → show notes / Shorts ideas, lead form → draft SMS. You can describe the workflow even if a bot or n8n builds the pipes.</p>
+  <div class="widget">
+    <h4>Example flow</h4>
+    <div class="rag-steps">
+      <div class="rag-step on"><div class="n">1</div><div><strong>Trigger</strong><p>New Google Form lead for a roofing site.</p></div></div>
+      <div class="rag-step on"><div class="n">2</div><div><strong>AI step</strong><p>Draft a short bilingual follow-up SMS.</p></div></div>
+      <div class="rag-step on"><div class="n">3</div><div><strong>Action</strong><p>Save to Sheet + notify you in chat to approve send.</p></div></div>
+    </div>
+    <p class="hint">Zapier = easiest. Make = visual scenarios. n8n = powerful, self-host friendly. Interview: pick based on budget, control, and who maintains it.</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="automation">Mark got it</button></div>
+</article>
+
+<article class="topic" id="guardrails" data-topic="guardrails">
+  <div class="topic-head"><div class="tnum">14</div><div><h3>Guardrails &amp; AI safety</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Guardrails are rules and filters that keep AI from doing harmful, private, or off-brand things — before and after the model replies.</div>
+  <p class="analogy"><b>Analogy:</b> Hard hats and “do not cut” tags on a job site. The crew can still work; unsafe moves get blocked.</p>
+  <p class="tie"><b>Your work:</b> Kid-facing ideas (howaiworksforkids / book) need no ads, no data collection from kids, age-appropriate content. Business bots: don’t send email without approval; don’t invent credentials.</p>
+  <div class="widget">
+    <h4>Layers you’d mention</h4>
+    <div class="mcp-tools" style="grid-template-columns:1fr 1fr">
+      <div class="mcp-tool">System prompts / policies</div>
+      <div class="mcp-tool">Input filters</div>
+      <div class="mcp-tool">Output checks</div>
+      <div class="mcp-tool">Human approval for sends</div>
+    </div>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="guardrails">Mark got it</button></div>
+</article>
+
+<article class="topic" id="cost" data-topic="cost">
+  <div class="topic-head"><div class="tnum">15</div><div><h3>Cost &amp; latency</h3><span class="done-badge">&#10003; Got it</span></div></div>
+  <div class="say"><strong>Say it like this</strong>Cost is mostly tokens in + tokens out (and tool calls). Latency is how long the user waits. Bigger models and longer context usually cost more and run slower.</div>
+  <p class="analogy"><b>Analogy:</b> Taking the big bucket truck for a tiny branch — works, but slow and expensive. Match the tool to the job.</p>
+  <p class="tie"><b>Your work:</b> Visibility checks that run many searches add tool latency. Cache repeats, shorten prompts, use a small model for classify / big model for final write-up.</p>
+  <div class="widget">
+    <h4>Tradeoff knobs</h4>
+    <div class="stats">
+      <div class="stat"><b>&#8595;</b><span>Shorter prompts</span></div>
+      <div class="stat"><b>&#8595;</b><span>Smaller model</span></div>
+      <div class="stat"><b>&#8595;</b><span>Cache / reuse</span></div>
+    </div>
+    <p class="hint">Interview line: “I’d measure dollars per successful task and p95 response time, then cut context and model size until quality dips.”</p>
+  </div>
+  <div class="tprog"><button type="button" class="btn btn-sm mark-done" data-topic="cost">Mark got it</button></div>
+</article>
+
+<section class="topic" id="flashcards">
+  <div class="topic-head"><div class="tnum">FC</div><div><h3>Flashcards</h3></div></div>
+  <p class="analogy">Tap the card to flip. Mark <b>Got it</b> or <b>Review again</b> — saved on this phone.</p>
+  <div class="fc-area">
+    <div class="fc" id="fc" tabindex="0" role="button" aria-label="Flashcard, tap to flip">
+      <div class="fc-face fc-front"><div class="lbl">Term</div><p id="fcQ"></p></div>
+      <div class="fc-face fc-back"><div class="lbl">Say it like this</div><p id="fcA"></p></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <span class="fc-count" id="fcCount">1 / 1</span>
+    <div class="btn-row" style="margin:0">
+      <button type="button" class="btn btn-sm btn-ghost" id="fcPrev">Prev</button>
+      <button type="button" class="btn btn-sm btn-warn" id="fcAgain">Review again</button>
+      <button type="button" class="btn btn-sm btn-ok" id="fcGot">Got it</button>
+      <button type="button" class="btn btn-sm btn-ghost" id="fcNext">Next</button>
+    </div>
+  </div>
+</section>
+
+<section class="topic" id="quiz">
+  <div class="topic-head"><div class="tnum">Q</div><div><h3>Quiz mode</h3></div></div>
+  <p id="quizQ" style="font-weight:700;font-size:17px"></p>
+  <div id="quizOpts"></div>
+  <p class="q-fb" id="quizFb" aria-live="polite"></p>
+  <div class="btn-row">
+    <button type="button" class="btn btn-sm" id="quizNext">Next question</button>
+    <span class="fc-count" id="quizScore">Score 0/0</span>
+  </div>
+</section>
+
+<section class="topic" id="interview">
+  <div class="topic-head"><div class="tnum">IV</div><div><h3>Interview answers (your voice)</h3></div></div>
+  <p class="analogy">Short model answers. Truthful — builder / self-taught, Google IT certs, Chicago tree trimmer moving into AI. Expand with your own stories.</p>
+
+  <details class="iq"><summary>1. Tell me about yourself</summary><div class="ans">I’m Nick Castro — Chicago-based. By day I work as a City tree trimmer; on the side I’ve been teaching myself AI by shipping real tools. I built doesaiknowmybusiness.com, a free AI Visibility Check that shows whether AI search recommends a local business. I build mobile sites for Chicago shops (like aaproroofers.com), I run a short podcast called AI Tools Pulse, and I made robloxideas.com plus a kids’ book on machine learning with my wife Nancy. I hold Google IT certificates. I’m looking for soft AI roles — enablement, automation, specialist, trainer — where I can help non-technical people actually use AI.</div></details>
+
+  <details class="iq"><summary>2. Tell me about an AI project (STAR) — doesaiknowmybusiness.com</summary><div class="ans"><b>Situation:</b> Local businesses get reviews on Google but often don’t show up when people ask ChatGPT or Perplexity who to hire.
+<b>Task:</b> I wanted a free tool that checks AI visibility and gives a fix plan in plain English (and Spanish).
+<b>Action:</b> I shipped doesaiknowmybusiness.com — an agent runs live searches, scores 0–100, lists competitors AI names instead, checks the website, and outputs a fix plan with ready-to-paste schema.
+<b>Result:</b> It’s a live product I can demo in interviews. It shows I understand agents, retrieval, grounding answers in real data, and packaging AI for small businesses — not just chatting with ChatGPT.</div></details>
+
+  <details class="iq"><summary>3. What is RAG and when would you use it?</summary><div class="ans">RAG means retrieve relevant documents first, then generate an answer from them. I’d use it anytime answers must stay tied to company docs, prices, or live search — like a business FAQ bot or my visibility checker pulling real Google results before scoring. It’s usually better than fine-tuning when facts change often.</div></details>
+
+  <details class="iq"><summary>4. Tokens vs context window?</summary><div class="ans">Tokens are the chunks the model reads and writes — billing and length limits are in tokens. The context window is the max tokens the model can see at once: system prompt, user message, retrieved docs, and the reply all share that backpack. Overflow means truncation or higher cost.</div></details>
+
+  <details class="iq"><summary>5. What are embeddings / vector databases?</summary><div class="ans">Embeddings turn text into numbers that capture meaning so “storm damage roof” sits near “emergency roof repair.” A vector database stores those and finds nearest neighbors fast. That’s the retrieval engine behind most RAG chatbots.</div></details>
+
+  <details class="iq"><summary>6. Fine-tuning vs RAG?</summary><div class="ans">RAG for fresh facts and citations. Fine-tuning to change style or teach a skill the model should “just have.” I’d start with good prompts + RAG; only fine-tune if we still can’t get consistent tone or behavior after that.</div></details>
+
+  <details class="iq"><summary>7. How do you reduce hallucinations?</summary><div class="ans">Ground with tools or RAG, require citations, lower temperature on factual tasks, and validate numbers and URLs. In my outreach I refuse fake review counts — same discipline with AI outputs. For sends, I keep a human approval step.</div></details>
+
+  <details class="iq"><summary>8. What is temperature?</summary><div class="ans">A randomness knob. Near 0 for scoring, claims, or anything that must be consistent. Higher for brainstorming Roblox ideas or podcast hooks. I’d set it per task, not one global value.</div></details>
+
+  <details class="iq"><summary>9. What is MCP?</summary><div class="ans">Model Context Protocol — a standard way for an assistant to connect to tools and data (Gmail, Drive, GitHub, etc.). Like USB-C for AI apps. It matters for enablement because teams can plug systems in without a custom integration every time.</div></details>
+
+  <details class="iq"><summary>10. What is an AI agent?</summary><div class="ans">An AI that loops: plan, call tools, observe results, repeat until done. My visibility app is agent-shaped — it doesn’t one-shot a paragraph; it searches, reads, then writes a scored report. Frameworks like LangChain help wire that pattern; the concept matters more than the brand name.</div></details>
+
+  <details class="iq"><summary>11. How would you evaluate an AI feature?</summary><div class="ans">Build a small golden set — real examples with a rubric (accuracy, tone, length, no PII leaks). Score before/after prompt changes. For my outreach drafts: under 320 chars, no invented metrics, clear CTA. Pair that with a few live spot-checks.</div></details>
+
+  <details class="iq"><summary>12. Zapier vs Make vs n8n?</summary><div class="ans">Zapier is the fastest for simple triggers. Make is strong for visual multi-step scenarios. n8n is flexible and friendlier to self-hosting/control. I’d pick based on who maintains it, budget, and whether we need AI steps plus human approval in the loop.</div></details>
+
+  <details class="iq"><summary>13. How do you think about AI cost and latency?</summary><div class="ans">Cost scales with tokens and tool calls; latency grows with model size and sequential tools. I’d shorten prompts, cache repeats, use a small model for routing and a larger one for final writing, and track cost per successful task plus wait time.</div></details>
+
+  <details class="iq"><summary>14. How do you teach non-technical people to use AI?</summary><div class="ans">Start from their real job, not the model. Short demos, templates, and guardrails. I already explain AI simply — kids’ book with Nancy, AI Tools Pulse, and sites for tradespeople. Enablement is translating AI into “here’s the workflow you run on Monday.”</div></details>
+
+  <details class="iq"><summary>15. Why you / why this role?</summary><div class="ans">I ship. I’m not waiting to “finish learning Python” — I build tools people can click. I know Chicago small businesses, I’m bilingual-friendly in how I write, and I live the enablement problem every day: making AI useful for people who aren’t engineers. Soft AI roles are where that skill set lands.</div></details>
+</section>
+
+<section class="topic" id="glossary">
+  <div class="topic-head"><div class="tnum">GL</div><div><h3>Glossary</h3></div></div>
+  <label class="lbl" for="gSearch">Search terms</label>
+  <input id="gSearch" class="field" placeholder="e.g. RAG, token, MCP…" autocomplete="off">
+  <div class="gloss-list" id="glossList" style="margin-top:12px"></div>
+</section>
+
+</main>
+<footer>Private study page · not linked from the public site · progress stays in this browser</footer>
+
+<script>
+(function(){
+  'use strict';
+  var STORE='nc_ai_study_v1';
+  function load(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){return{}}}
+  function save(s){try{localStorage.setItem(STORE,JSON.stringify(s))}catch(e){}}
+  var state=load();
+  if(!state.done) state.done={};
+  if(!state.fc) state.fc={};
+
+  var menuBtn=document.getElementById('menuBtn');
+  var drawer=document.getElementById('drawer');
+  var backdrop=document.getElementById('backdrop');
+  function closeMenu(){drawer.classList.remove('open');backdrop.classList.remove('show');backdrop.hidden=true;menuBtn.setAttribute('aria-expanded','false')}
+  function openMenu(){drawer.classList.add('open');backdrop.hidden=false;requestAnimationFrame(function(){backdrop.classList.add('show')});menuBtn.setAttribute('aria-expanded','true')}
+  menuBtn.addEventListener('click',function(){drawer.classList.contains('open')?closeMenu():openMenu()});
+  backdrop.addEventListener('click',closeMenu);
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu)});
+
+  var TOPICS=['tokens','context','embeddings','vectordb','rag','mcp','agents','prompting','finetune','hallucinations','temperature','evals','automation','guardrails','cost'];
+  function updateProg(){
+    var n=0;TOPICS.forEach(function(t){if(state.done[t])n++});
+    var pct=Math.round(n/TOPICS.length*100);
+    document.getElementById('gprog').style.width=pct+'%';
+    document.getElementById('gprogTxt').textContent=pct+'%';
+    TOPICS.forEach(function(t){
+      var el=document.querySelector('.topic[data-topic="'+t+'"]');
+      if(el) el.classList.toggle('done',!!state.done[t]);
+    });
+  }
+  document.querySelectorAll('.mark-done').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.getAttribute('data-topic');
+      state.done[t]=true;save(state);updateProg();
+      btn.textContent='Got it';btn.disabled=true;
+    });
+  });
+  updateProg();
+  TOPICS.forEach(function(t){
+    if(state.done[t]){
+      var b=document.querySelector('.mark-done[data-topic="'+t+'"]');
+      if(b){b.textContent='Got it';b.disabled=true}
+    }
+  });
+
+  function approxTokens(text){
+    var raw=text.match(/\S+|\s+/g)||[];
+    var out=[];
+    raw.forEach(function(piece){
+      if(/^\s+$/.test(piece)){out.push(piece);return}
+      var parts=piece.match(/[\w']+|[^\w\s]+/g)||[piece];
+      parts.forEach(function(p){
+        if(p.length<=6 || /[^\w]/.test(p)){out.push(p);return}
+        for(var i=0;i<p.length;i+=4) out.push(p.slice(i,i+4));
+      });
+    });
+    return out.filter(function(t){return t.length});
+  }
+  function renderTok(){
+    var text=document.getElementById('tokIn').value;
+    var toks=approxTokens(text);
+    var box=document.getElementById('tokOut');
+    box.innerHTML='';
+    toks.forEach(function(t){
+      var s=document.createElement('span');
+      s.className='tok';
+      s.textContent=t.replace(/ /g,'\u2423');
+      box.appendChild(s);
+    });
+    var count=toks.length;
+    document.getElementById('tokCount').textContent=count;
+    document.getElementById('tokChars').textContent=text.length;
+    var cost=(count/1e6)*0.50;
+    document.getElementById('tokCost').textContent=cost<0.0001?'~$0':('~$'+(cost<0.01?cost.toFixed(5):cost.toFixed(4)));
+  }
+  document.getElementById('tokIn').addEventListener('input',renderTok);
+  renderTok();
+
+  var BP_MAX=8000, bpUsed=0, bpList=[];
+  var BP_ADD={sys:{label:'System prompt',n:400},job:{label:'Job post',n:1200},resume:{label:'Resume',n:2000},pdf:{label:'PDF dump',n:5000},chat:{label:'Chat history',n:1500}};
+  function renderBp(){
+    var pct=Math.min(100,bpUsed/BP_MAX*100);
+    document.getElementById('bpBar').style.width=pct+'%';
+    var box=document.getElementById('bpItems');box.innerHTML='';
+    var running=0;
+    bpList.forEach(function(it){
+      running+=it.n;
+      var d=document.createElement('span');
+      d.className='bp-item'+(running>BP_MAX?' overflow':'');
+      d.textContent=it.label+' ('+it.n+')';
+      box.appendChild(d);
+    });
+    var msg=document.getElementById('bpMsg');
+    if(bpUsed===0) msg.textContent='Empty backpack — add items.';
+    else if(bpUsed<=BP_MAX) msg.textContent=bpUsed.toLocaleString()+' / '+BP_MAX.toLocaleString()+' tokens — fits.';
+    else msg.textContent=bpUsed.toLocaleString()+' / '+BP_MAX.toLocaleString()+' — OVERFLOW. Oldest or fattest chunks get dropped or the call fails.';
+  }
+  document.querySelectorAll('[data-bp]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var k=btn.getAttribute('data-bp');
+      var it=BP_ADD[k];
+      bpList.push({label:it.label,n:it.n});
+      bpUsed+=it.n;
+      renderBp();
+    });
+  });
+  document.getElementById('bpReset').addEventListener('click',function(){bpList=[];bpUsed=0;renderBp()});
+  renderBp();
+
+  var WORDS=[
+    {w:'roofer',x:22,y:28},{w:'roofing',x:28,y:34},{w:'shingles',x:18,y:40},
+    {w:'storm damage',x:32,y:22},{w:'plumber',x:20,y:70},{w:'pipe leak',x:26,y:78},
+    {w:'Chicago',x:55,y:48},{w:'Pilsen',x:62,y:42},{w:'pizza',x:78,y:75},
+    {w:'tacos',x:84,y:82},{w:'AI agent',x:70,y:18},{w:'RAG',x:78,y:24},
+    {w:'embeddings',x:74,y:30},{w:'podcast',x:48,y:80},{w:'Roblox',x:42,y:88}
+  ];
+  var emap=document.getElementById('emap');
+  WORDS.forEach(function(o,i){
+    var b=document.createElement('button');
+    b.type='button';b.className='edot';b.textContent=o.w;
+    b.style.left=o.x+'%';b.style.top=o.y+'%';
+    b.setAttribute('data-i',i);
+    b.addEventListener('click',function(){selectEmbed(i)});
+    emap.appendChild(b);
+  });
+  function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
+  function selectEmbed(i){
+    var dots=emap.querySelectorAll('.edot');
+    dots.forEach(function(d){d.classList.remove('active','near')});
+    dots[i].classList.add('active');
+    var base=WORDS[i];
+    var ranked=WORDS.map(function(w,j){return{j:j,d:dist(base,w)}}).filter(function(o){return o.j!==i}).sort(function(a,b){return a.d-b.d});
+    ranked.slice(0,3).forEach(function(o){dots[o.j].classList.add('near')});
+    document.getElementById('enn').textContent='Nearest to "'+base.w+'": '+ranked.slice(0,3).map(function(o){return WORDS[o.j].w}).join(', ')+'. (Precomputed 2D toy map — real embeddings have hundreds of dimensions.)';
+  }
+
+  var CHUNKS=[
+    {t:'We offer storm damage roof inspection and insurance help across Chicago.',tags:'storm roof chicago'},
+    {t:'Tap-to-call mobile sites for local trades — roofing, plumbing, auto.',tags:'website mobile trades'},
+    {t:'AI Visibility Check scores whether ChatGPT recommends your business.',tags:'ai visibility chatgpt score'},
+    {t:'Spanish-speaking crews available for south and west side jobs.',tags:'spanish bilingual'},
+    {t:'Roblox idea generator with core loop and monetization plan.',tags:'roblox game ideas'}
+  ];
+  function vSearch(){
+    var q=(document.getElementById('vQuery').value||'').toLowerCase();
+    var terms=q.split(/\W+/).filter(Boolean);
+    var scored=CHUNKS.map(function(c){
+      var hay=(c.t+' '+c.tags).toLowerCase();
+      var s=0;terms.forEach(function(t){if(hay.indexOf(t)>=0)s++});
+      return{c:c,s:s};
+    }).sort(function(a,b){return b.s-a.s});
+    var box=document.getElementById('vResults');box.innerHTML='';
+    scored.slice(0,3).forEach(function(o,i){
+      var d=document.createElement('div');
+      d.className='rag-step on';
+      d.innerHTML='<div class="n">'+(i+1)+'</div><div><strong>Chunk score '+o.s+'</strong><p>'+o.c.t+'</p></div>';
+      box.appendChild(d);
+    });
+  }
+  document.getElementById('vSearch').addEventListener('click',vSearch);
+  vSearch();
+
+  var ragI=-1;
+  function ragShow(){
+    document.querySelectorAll('#ragSteps .rag-step').forEach(function(el){
+      el.classList.toggle('on', parseInt(el.getAttribute('data-i'),10)<=ragI);
+    });
+  }
+  document.getElementById('ragNext').addEventListener('click',function(){ragI=Math.min(3,ragI+1);ragShow()});
+  document.getElementById('ragReset').addEventListener('click',function(){ragI=-1;ragShow()});
+
+  var agI=-1;
+  function agShow(){
+    document.querySelectorAll('#aloop .aloop-item').forEach(function(el){
+      el.classList.toggle('on', parseInt(el.getAttribute('data-i'),10)<=agI);
+    });
+  }
+  document.getElementById('agentNext').addEventListener('click',function(){agI=Math.min(4,agI+1);agShow()});
+  document.getElementById('agentReset').addEventListener('click',function(){agI=-1;agShow()});
+
+  var ftMsg={rag:'RAG (or tools). Keep facts outside the model.',ft:'Fine-tune or strong few-shot for house style.',both:'Both: RAG for facts + fine-tune/prompts for voice.'};
+  document.querySelectorAll('.ft-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.getElementById('ftFb').textContent=ftMsg[btn.getAttribute('data-a')];
+    });
+  });
+
+  var TEMP_EXAMPLES=[
+    {max:0.3,text:'"Aguilar Roofing: solid Google presence, weak AI mentions. Fix: add LocalBusiness schema, clear service pages, earn 3 niche citations. Score ~42/100."'},
+    {max:0.7,text:'"Think of AI search like a new Yellow Pages. Aguilar shows up for humans on Maps, but the robots still shrug. Here is a punchy fix plan…"'},
+    {max:1.5,text:'"Imagine rooftops gossiping with satellites… Aguilar needs a neon billboard in latent space! Also maybe a mariachi schema orchestra?? (Too spicy — dial it down for clients.)"'}
+  ];
+  function renderTemp(){
+    var v=parseFloat(document.getElementById('tempRange').value);
+    document.getElementById('tempVal').textContent=v.toFixed(1);
+    var pick=TEMP_EXAMPLES[0];
+    if(v>1) pick=TEMP_EXAMPLES[2];
+    else if(v>0.3) pick=TEMP_EXAMPLES[1];
+    document.getElementById('tempOut').textContent=pick.text;
+  }
+  document.getElementById('tempRange').addEventListener('input',renderTemp);
+  renderTemp();
+
+  var CARDS=[
+    {q:'Token',a:'A chunk of text the model reads/writes. Not always a full word. Usage is billed in tokens.'},
+    {q:'Context window',a:'How much text fits in working memory at once — prompt + docs + reply share it.'},
+    {q:'Embedding',a:'Meaning turned into numbers so similar ideas sit close together.'},
+    {q:'Vector database',a:'Store embeddings; search by nearest meaning, not exact keywords.'},
+    {q:'RAG',a:'Retrieve relevant docs first, then generate an answer grounded in them.'},
+    {q:'MCP',a:'A standard plug so AI assistants can use tools/apps (Gmail, GitHub, etc.).'},
+    {q:'Agent',a:'AI that plans, calls tools, observes, and loops until the goal is done.'},
+    {q:'Temperature',a:'Randomness knobs. Low = precise. High = creative/chaotic.'},
+    {q:'Hallucination',a:'Confident but false output. Fight with grounding, citations, low temp, checks.'},
+    {q:'Fine-tune vs RAG',a:'RAG for changing facts. Fine-tune for style/skill. Most biz Q&A: RAG first.'},
+    {q:'Evals',a:'A test set + rubric so you know prompt/model changes actually improved quality.'},
+    {q:'Guardrails',a:'Policies and filters that block unsafe, private, or off-brand AI behavior.'}
+  ];
+  var fcI=0;
+  var fcEl=document.getElementById('fc');
+  function fcRender(){
+    var c=CARDS[fcI];
+    document.getElementById('fcQ').textContent=c.q;
+    document.getElementById('fcA').textContent=c.a;
+    fcEl.classList.remove('flipped');
+    var got=state.fc[c.q]?' (known)':'';
+    document.getElementById('fcCount').textContent=(fcI+1)+' / '+CARDS.length+got;
+  }
+  function fcFlip(){fcEl.classList.toggle('flipped')}
+  fcEl.addEventListener('click',fcFlip);
+  fcEl.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();fcFlip()}});
+  document.getElementById('fcNext').addEventListener('click',function(){fcI=(fcI+1)%CARDS.length;fcRender()});
+  document.getElementById('fcPrev').addEventListener('click',function(){fcI=(fcI-1+CARDS.length)%CARDS.length;fcRender()});
+  document.getElementById('fcGot').addEventListener('click',function(){state.fc[CARDS[fcI].q]=true;save(state);fcI=(fcI+1)%CARDS.length;fcRender()});
+  document.getElementById('fcAgain').addEventListener('click',function(){state.fc[CARDS[fcI].q]=false;save(state);fcRender()});
+  fcRender();
+
+  var QUIZ=[
+    {q:'What does RAG stand for (idea)?',opts:['Random Answer Generator','Retrieve docs, then generate an answer','Run All GPUs','Recursive Agent Graph'],a:1,why:'Retrieval-Augmented Generation = look up, then write.'},
+    {q:'Tokens are…',opts:['Always whole words','Only output characters','Chunks of text the model reads/writes','Database rows'],a:2,why:'Models operate on tokens; words can split into multiple.'},
+    {q:'Best first choice when company facts change weekly?',opts:['Fine-tune weekly','RAG (or tools) over the docs','Raise temperature','Remove the system prompt'],a:1,why:'RAG keeps facts outside the model weights.'},
+    {q:'Low temperature is best for…',opts:['Wild brainstorming','Factual scoring and consistent drafts','Making more hallucinations','Longer context windows'],a:1,why:'Low temp is safer and more deterministic.'},
+    {q:'MCP is most like…',opts:['A vector database','A USB-C standard for AI tools','A type of embedding','A Zapier competitor only'],a:1,why:'Shared protocol to plug tools into assistants.'},
+    {q:'An agent typically…',opts:['Answers one shot with no tools','Plans, uses tools, observes, loops','Only fine-tunes models','Replaces the context window'],a:1,why:'Tool-using loop until the goal is met.'},
+    {q:'Embeddings help you…',opts:['Bill GPU hours','Find similar meaning, not just keywords','Compress PNGs','Set temperature'],a:1,why:'Semantic similarity search.'},
+    {q:'A hallucination is…',opts:['A GPU overheating','Confident false output','A type of RAG chunk','MCP auth failure'],a:1,why:'Sound right, be wrong — ground and verify.'}
+  ];
+  var qi=0,qRight=0,qAsked=0,qLocked=false;
+  function quizRender(){
+    qLocked=false;
+    var item=QUIZ[qi];
+    document.getElementById('quizQ').textContent=item.q;
+    var box=document.getElementById('quizOpts');box.innerHTML='';
+    document.getElementById('quizFb').textContent='';
+    item.opts.forEach(function(opt,i){
+      var b=document.createElement('button');
+      b.type='button';b.className='q-opt';b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(qLocked) return;qLocked=true;qAsked++;
+        var ok=i===item.a;
+        if(ok) qRight++;
+        box.querySelectorAll('.q-opt').forEach(function(el,j){
+          if(j===item.a) el.classList.add('correct');
+          else if(j===i) el.classList.add('wrong');
+        });
+        document.getElementById('quizFb').textContent=(ok?'Correct. ':'Not quite. ')+item.why;
+        document.getElementById('quizScore').textContent='Score '+qRight+'/'+qAsked;
+      });
+      box.appendChild(b);
+    });
+    document.getElementById('quizScore').textContent='Score '+qRight+'/'+qAsked;
+  }
+  document.getElementById('quizNext').addEventListener('click',function(){qi=(qi+1)%QUIZ.length;quizRender()});
+  quizRender();
+
+  var GLOSS=[
+    ['Agent','AI that can use tools and loop toward a goal.'],
+    ['Context window','Max text the model can consider at once.'],
+    ['Embedding','Numeric fingerprint of meaning.'],
+    ['Evals','Tests/rubrics to measure AI quality.'],
+    ['Fine-tuning','Training a model further on your examples.'],
+    ['Guardrails','Safety/policy filters around AI use.'],
+    ['Hallucination','Confident but incorrect model output.'],
+    ['Latency','How long until the user gets a response.'],
+    ['LangChain','Popular framework for chaining LLM calls, tools, and agents.'],
+    ['MCP','Model Context Protocol — standard tool/data plug for assistants.'],
+    ['n8n / Make / Zapier','Automation platforms that can include AI steps.'],
+    ['Prompt','Instructions + input you give the model.'],
+    ['RAG','Retrieve relevant info, then generate an answer.'],
+    ['Temperature','Controls randomness of outputs.'],
+    ['Token','Unit of text the model processes; also how usage is billed.'],
+    ['Vector database','Database optimized for nearest-neighbor embedding search.']
+  ];
+  function renderGloss(){
+    var q=(document.getElementById('gSearch').value||'').toLowerCase();
+    var box=document.getElementById('glossList');box.innerHTML='';
+    GLOSS.filter(function(g){return !q||g[0].toLowerCase().indexOf(q)>=0||g[1].toLowerCase().indexOf(q)>=0}).forEach(function(g){
+      var d=document.createElement('div');d.className='g-item';
+      d.innerHTML='<strong>'+g[0]+'</strong><span>'+g[1]+'</span>';
+      box.appendChild(d);
+    });
+  }
+  document.getElementById('gSearch').addEventListener('input',renderGloss);
+  renderGloss();
+})();
+</script>
+</body>
+</html>
