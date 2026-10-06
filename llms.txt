@@ -1,9 +1,10 @@
 # Nick Castro
 
-> Nick Castro is a Chicago-area builder who uses AI tools like Claude and Replit to turn ideas into live websites and web tools, fast. He builds websites for local businesses, free web apps, and a children's book about machine learning, and is open to new projects or a role on a team.
+> Nick Castro is a Chicago-area builder who uses AI tools like Claude and Replit to turn ideas into live websites and web tools, fast. He builds websites for local businesses, free web apps, interactive AI lessons for kids, and a children's book about machine learning, and is open to new projects or a role on a team.
 
 ## Projects
 - [Does AI Know My Business? (AI Visibility Check)](https://doesaiknowmybusiness.com/): Free tool that shows whether AI recommends a local business. An AI agent runs live Google searches, then gives a 0–100 score, the competitors AI names instead, a website check, and a fix plan with ready-to-paste schema code. English and Spanish.
+- [How AI Works for Kids](https://howaiworksforkids.com/): Interactive lessons where kids ages 6–10 learn how AI works by teaching a tiny AI named Pip. 7 lessons, each with a read-aloud picture story, a hands-on game (including a real nearest-neighbor classifier and a next-word model that co-writes a story), a quick check, and a badge, plus a printable certificate. Kid-safe: no ads, accounts, chatbot, or kid data (COPPA-friendly). Built with Next.js, TypeScript, Tailwind, and Vercel.
 - [A&A Professional Roofers](https://www.aaproroofers.com/): Business website for A&A Professional Roofers LLC, a Chicago-area roofing company (services, gallery, service areas, free-quote form, Spanish-speaking callout).
 - [Roblox Idea Generator](https://robloxideas.com/): Free Roblox game idea generator for developers: each idea comes with a core loop, a monetization plan with suggested Robux prices, a retention hook, a scope estimate, and a free one-page design doc.
 - [The Smart Soccer Ball Mystery: Machine Learning for Kids – Book 1](https://a.co/d/09uH5j59): 24-page picture book for ages 6–10, co-written with Nancy Castro, that teaches how AI learns from data.
