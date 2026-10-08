@@ -7,11 +7,18 @@ const CONFIG = {
 (function () {
   const email = document.getElementById("email-btn");
   const linkedin = document.getElementById("linkedin-btn");
-  if (CONFIG.email) { email.href = "mailto:" + CONFIG.email; email.hidden = false; } else { email.hidden = true; }
-  if (CONFIG.linkedin) { linkedin.href = CONFIG.linkedin; linkedin.hidden = false; } else { linkedin.hidden = true; }
+  if (email) {
+    if (CONFIG.email) { email.href = email.getAttribute("href") || ("mailto:" + CONFIG.email); email.hidden = false; }
+    else { email.hidden = true; }
+  }
+  if (linkedin) {
+    if (CONFIG.linkedin) { linkedin.href = CONFIG.linkedin; linkedin.hidden = false; }
+    else { linkedin.hidden = true; }
+  }
 
   const btn = document.querySelector(".menu-btn");
   const links = document.getElementById("nav-links");
+  if (!btn || !links) return;
   const setOpen = (open) => {
     links.classList.toggle("open", open);
     btn.setAttribute("aria-expanded", String(open));
