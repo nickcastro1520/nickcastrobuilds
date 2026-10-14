@@ -127,3 +127,5 @@ p{margin:0 0 1em}
 .nav-links a[aria-current="page"]{color:var(--accent);font-weight:700}
 .footer a{color:var(--muted);text-decoration:none}
 .footer a:hover{color:var(--accent)}
+.eyebrow{display:inline-block;font-size:.85rem;font-weight:700;color:var(--accent);background:#eff6ff;padding:6px 12px;border-radius:999px;margin:0 0 16px}
+.result{font-size:.95rem;color:var(--ink);background:#f0fdf4;border-left:3px solid #16a34a;padding:8px 12px;border-radius:6px;margin:0 0 12px}
