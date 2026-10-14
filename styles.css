@@ -100,9 +100,9 @@ p{margin:0 0 1em}
   .book-hero-grid{grid-template-columns:280px 1fr;gap:48px}
   .book-hero{padding-bottom:72px}
 }
-.book-cover{justify-self:center;max-width:220px}
-@media (min-width:768px){.book-cover{max-width:280px;justify-self:start}}
-.book-cover img{width:100%;height:auto;border-radius:8px;box-shadow:0 18px 40px -16px rgba(15,23,42,.45)}
+.book-cover{justify-self:center;width:220px;max-width:100%}
+@media (min-width:768px){.book-cover{width:280px;justify-self:start}}
+.book-cover img{width:100%;height:auto;aspect-ratio:529/800;border-radius:8px;box-shadow:0 18px 40px -16px rgba(15,23,42,.45)}
 .book-hero-copy .tag{margin-bottom:14px}
 .book-hero h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:800;max-width:18ch;margin-bottom:.25em}
 .book-subtitle{font-weight:600;color:var(--accent);margin:0 0 1em}
