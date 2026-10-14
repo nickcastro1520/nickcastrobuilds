@@ -129,3 +129,10 @@ p{margin:0 0 1em}
 .footer a:hover{color:var(--accent)}
 .eyebrow{display:inline-block;font-size:.85rem;font-weight:700;color:var(--accent);background:#eff6ff;padding:6px 12px;border-radius:999px;margin:0 0 16px}
 .result{font-size:.95rem;color:var(--ink);background:#f0fdf4;border-left:3px solid #16a34a;padding:8px 12px;border-radius:6px;margin:0 0 12px}
+.skills{padding-top:8px;padding-bottom:8px}.skills h2{font-size:1.25rem;margin-bottom:14px}
+.skill-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.skill-list li{font-size:.92rem;font-weight:600;color:var(--ink);background:#f1f5f9;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+.how{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;padding:0 14px;background:#f8fafc}
+.how summary{cursor:pointer;font-weight:700;color:var(--accent);padding:12px 0;min-height:44px;box-sizing:border-box}
+.how[open]{padding-bottom:6px}.how p{font-size:.93rem;margin:0 0 10px;color:var(--muted)}.how p strong{color:var(--ink)}
+.card-body p{max-width:65ch}
