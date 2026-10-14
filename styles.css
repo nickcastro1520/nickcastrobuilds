@@ -136,3 +136,9 @@ p{margin:0 0 1em}
 .how summary{cursor:pointer;font-weight:700;color:var(--accent);padding:12px 0;min-height:44px;box-sizing:border-box}
 .how[open]{padding-bottom:6px}.how p{font-size:.93rem;margin:0 0 10px;color:var(--muted)}.how p strong{color:var(--ink)}
 .card-body p{max-width:65ch}
+
+/* Language toggle */
+.lang-toggle{margin-left:auto;margin-right:12px;font-weight:600;font-size:.9rem;color:var(--muted,#475569);text-decoration:none;padding:10px 4px;min-height:44px;display:inline-flex;align-items:center}
+.lang-toggle span[aria-current]{color:var(--accent)}
+.lang-toggle:hover{color:var(--accent)}
+@media (min-width:768px){.lang-toggle{order:3;margin-left:24px;margin-right:0}.nav-links{margin-left:auto}}
