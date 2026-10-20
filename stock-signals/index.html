@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I tested 20+ offbeat stock signals honestly. One survived. — Nick Castro</title>
+  <meta name="description" content="A case study from The Other Data: snowpack, box office, bird flu, insider buys, 8-K filings and more, tested against size-matched stocks. Only late filings held up.">
+  <script src="/ga.js"></script>
+  <link rel="canonical" href="https://nickcastrobuilds.com/stock-signals/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Nick Castro">
+  <meta name="theme-color" content="#1d4ed8">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nick Castro">
+  <meta property="og:url" content="https://nickcastrobuilds.com/stock-signals/">
+  <meta property="og:title" content="I tested 20+ offbeat stock signals honestly. One survived.">
+  <meta property="og:description" content="Snowpack, box office, bird flu, insider buys, 8-K filings: tested against size-matched stocks. Only late filings held up.">
+  <meta property="og:image" content="https://nickcastrobuilds.com/images/theotherdata-1000.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/inter-latin.woff2) format('woff2')}
+  .cs p,.cs li{color:var(--muted);margin-bottom:14px}.cs h2{margin-top:8px}.cs ul{padding-left:20px;margin-bottom:14px}
+  .tbl{overflow-x:auto;margin:6px 0 14px;border:1px solid var(--line);border-radius:var(--radius)}
+  .tbl table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+  .tbl th,.tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{background:#f8fafc;font-weight:700}.tbl tr:last-child td{border-bottom:0}
+  .big{font-size:1.15rem;color:inherit !important}.fine{font-size:.88rem}</style>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">Nick Castro</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main">
+        <a href="/#work" aria-current="page">Work</a>
+        <a href="/book/">Book</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="cs">
+    <section class="section">
+      <div class="wrap narrow">
+        <span class="tag">Case study · The Other Data</span>
+        <h1>I tested 20+ offbeat stock signals honestly. One survived.</h1>
+        <p class="big">Every number on this page comes from <a href="https://theotherdata.com/track" target="_blank" rel="noopener">theotherdata.com/track</a> and the raw data files behind it.</p>
+
+        <h2>1. The question</h2>
+        <p>Can free public data predict stocks? <a href="https://theotherdata.com" target="_blank" rel="noopener">The Other Data</a> explains stocks with offbeat public data like paperboard output, airport lines, and FDA reports. I wanted to know if any of it actually lined up with what stocks did next, measured honestly. Its scoreboard grades 88 signals one by one, and I ran separate, tougher tests on the most promising ideas.</p>
+
+        <h2>2. What failed</h2>
+        <p>To pass, a signal had to beat the better of "always guess up" and "always guess down" against the S&amp;P 500, and the bottom of its 95% range had to clear that bar too. Back-to-back calls in the same direction count as one event.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Signal → stock</th><th>Events</th><th>Beat the S&amp;P</th><th>Bar to clear</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Ski-country snowpack → Vail Resorts</td><td>63</td><td>47.6%</td><td>52.4%</td><td>Failed</td></tr>
+            <tr><td>Midwest/Northeast snowfall → Compass Minerals</td><td>46</td><td>52.2%</td><td>52.2%</td><td>Failed</td></tr>
+            <tr><td>US box office → Disney</td><td>109</td><td>46.8%</td><td>52.3%</td><td>Failed</td></tr>
+            <tr><td>Bird flu in egg flocks → Cal-Maine</td><td>9</td><td>66.7% (range 35.4–87.9%)</td><td>55.6%</td><td>Failed</td></tr>
+            <tr><td>Cattle on Feed → Tyson</td><td>43</td><td>44.2%</td><td>55.8%</td><td>Failed</td></tr>
+            <tr><td>Major power outages → Generac</td><td>39</td><td>64.1% (range 48.4–77.3%)</td><td>53.8%</td><td>Failed</td></tr>
+            <tr><td>Suez Canal transits → ZIM</td><td>8</td><td>62.5% (range 30.6–86.3%)</td><td>50.0%</td><td>Failed</td></tr>
+            <tr><td>Insider open-market buys, top 500 stocks (1 month)</td><td>4,561</td><td>49.5%</td><td>50.6%</td><td>Failed</td></tr>
+          </tbody>
+        </table></div>
+        <p>Six SEC filing signals had their rule picked on 2012–2020, then were checked once on 2021–2026. None was confirmed:</p>
+        <div class="tbl"><table>
+          <thead><tr><th>8-K / filing signal (2021–2026)</th><th>Events</th><th>Called right vs S&amp;P</th><th>Bar to clear</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>8-K 4.02 non-reliance</td><td>595</td><td>63.5%</td><td>64.9%</td><td>Not confirmed</td></tr>
+            <tr><td>8-K 4.01 auditor change</td><td>1,726</td><td>66.7%</td><td>63.0%</td><td>Under review, same small-company problem</td></tr>
+            <tr><td>8-K 3.01 delisting notice</td><td>3,687</td><td>36.3%</td><td>61.7%</td><td>Not confirmed</td></tr>
+            <tr><td>8-K 5.02 officer/director change</td><td>27,653</td><td>39.8%</td><td>59.0%</td><td>Not confirmed</td></tr>
+            <tr><td>8-K 5.02 CFO departure</td><td>17,126</td><td>38.6%</td><td>58.9%</td><td>Not confirmed</td></tr>
+            <tr><td>Schedule 13D</td><td>3,474</td><td>39.1%</td><td>59.2%</td><td>Not confirmed</td></tr>
+          </tbody>
+        </table></div>
+        <p>Full list of what was tried: <a href="https://theotherdata.com/track#v2-h" target="_blank" rel="noopener">the tougher tests on /track</a>.</p>
+
+        <h2>3. How I kept it honest</h2>
+        <ul>
+          <li><strong>Size-matched comparison groups.</strong> Small companies often lag the market on their own, so each late filer was compared with stocks of similar size, not just the S&amp;P 500.</li>
+          <li><strong>Survivorship checks.</strong> Failed and delisted companies were added back, and notices from companies that couldn't be classified were also tested at a 0% return as a bound.</li>
+          <li><strong>Rules chosen first, confirmed later.</strong> New signals had their rule picked on 2012–2020 and were checked once on 2021–2026.</li>
+          <li><strong>Stress tests.</strong> Outliers capped, three benchmarks (S&amp;P 500, small caps, micro caps), and a baseline of the same stocks in months with no filing.</li>
+        </ul>
+
+        <h2>4. Bugs I caught</h2>
+        <ul>
+          <li><strong>Claims without proof.</strong> The AI agent I built with once reported tests it hadn't actually run. Since then, every claim needs a results table behind it.</li>
+          <li><strong>The shrinking Apple.</strong> An early insider-buying test showed insider buys lagging by about 1.6% a month. That came from a bug in the size ranking: it multiplied old share counts by split-adjusted prices, which made companies that later split look smaller (Apple by 28x) and let the wrong companies into the top 500. After the fix, Apple, Microsoft, JPMorgan, Exxon and Johnson &amp; Johnson are in the top 500 every month from 2012 to 2026, and the insider-buying signal disappeared.</li>
+        </ul>
+
+        <h2>5. The result: late filers</h2>
+        <p>When a company files a notice that its annual or quarterly report will be late (SEC Form 12b-25), its stock lagged similar-sized stocks by about 4% on average over the next 3 months, in both periods:</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Period</th><th>Events</th><th>Avg vs similar-sized stocks (3 months)</th><th>95% range</th></tr></thead>
+          <tbody>
+            <tr><td>2012–2020</td><td>2,872</td><td>−3.90%</td><td>−5.42% to −2.37%</td></tr>
+            <tr><td>2021–2026</td><td>3,881</td><td>−4.16%</td><td>−5.55% to −2.78%</td></tr>
+          </tbody>
+        </table></div>
+        <p>At 1 month, it's not proven.</p>
+
+        <h2>6. Limits</h2>
+        <ul>
+          <li>Historical pattern only.</li>
+          <li>Mostly small, hard-to-trade stocks. Real trades would be hard to fill at these prices, and trading costs and short-selling limits aren't included and could erase the gap.</li>
+          <li>This reproduces a known effect in academic research on late filings. It's not a new discovery.</li>
+          <li>Not a prediction for any single company.</li>
+          <li>Education only. Not financial advice.</li>
+        </ul>
+
+        <h2>7. See the data yourself</h2>
+        <ul>
+          <li><a href="https://theotherdata.com/track" target="_blank" rel="noopener">Track record page</a></li>
+          <li><a href="https://theotherdata.com/data/phase2.json" target="_blank" rel="noopener">phase2.json</a>: late filings, stress tests, insider buys, 8-K signals</li>
+          <li><a href="https://theotherdata.com/data/single-stock-study.json" target="_blank" rel="noopener">single-stock-study.json</a>: snowpack, snowfall, box office, bird flu, cattle, outages, Suez</li>
+          <li><a href="https://theotherdata.com/data/event-study.json" target="_blank" rel="noopener">event-study.json</a>: first-pass filing tests</li>
+          <li><a href="https://theotherdata.com/data/surv2-phase2.json" target="_blank" rel="noopener">surv2-phase2.json</a>: survivorship check</li>
+        </ul>
+        <p class="fine">Education only. Past results, real or backtested, don't predict future ones.</p>
+        <p><a class="btn btn-small" href="/#work">← Back to my work</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Nick Castro · <a href="/">nickcastrobuilds.com</a></div>
+  </footer>
+  <script src="/main.js"></script>
+</body>
+</html>
