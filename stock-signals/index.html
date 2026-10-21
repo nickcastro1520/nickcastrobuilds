@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>I tested 20+ offbeat stock signals honestly. One survived. — Nick Castro</title>
+  <title>I tested 15 offbeat stock signals the hard way. One survived. — Nick Castro</title>
   <meta name="description" content="A case study from The Other Data: snowpack, box office, bird flu, insider buys, 8-K filings and more, tested against size-matched stocks. Only late filings held up.">
   <script src="/ga.js"></script>
   <link rel="canonical" href="https://nickcastrobuilds.com/stock-signals/">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Nick Castro">
   <meta property="og:url" content="https://nickcastrobuilds.com/stock-signals/">
-  <meta property="og:title" content="I tested 20+ offbeat stock signals honestly. One survived.">
+  <meta property="og:title" content="I tested 15 offbeat stock signals the hard way. One survived.">
   <meta property="og:description" content="Snowpack, box office, bird flu, insider buys, 8-K filings: tested against size-matched stocks. Only late filings held up.">
   <meta property="og:image" content="https://nickcastrobuilds.com/images/stock-signals-1000.webp">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +28,9 @@
   .tbl table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
   .tbl th,.tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
   .tbl th{background:#f8fafc;font-weight:700}.tbl tr:last-child td{border-bottom:0}
-  .big{font-size:1.15rem;color:inherit !important}.fine{font-size:.88rem}</style>
+  .big{font-size:1.15rem;color:inherit !important}.fine{font-size:.88rem}
+  @media (max-width:639px){.tbl{border:0;overflow:visible}.tbl table{min-width:0}.tbl thead{display:none}.tbl tr{display:block;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;padding:6px 12px;background:#fff}.tbl td{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:7px 0;text-align:right}.tbl td:first-child{display:block;text-align:left;font-weight:700;color:inherit}.tbl td:first-child::before{content:none}.tbl td::before{content:attr(data-label);font-weight:600;text-align:left;color:var(--muted)}.tbl tr td:last-child{border-bottom:0}}
+  </style>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -52,39 +54,40 @@
     <section class="section">
       <div class="wrap narrow">
         <span class="tag">Case study · The Other Data</span>
-        <h1>I tested 20+ offbeat stock signals honestly. One survived.</h1>
+        <h1>I tested 15 offbeat stock signals the hard way. One survived.</h1>
         <p class="big">Every number on this page comes from <a href="https://theotherdata.com/track" target="_blank" rel="noopener">theotherdata.com/track</a> and the raw data files behind it.</p>
 
         <h2>1. The question</h2>
-        <p>Can free public data predict stocks? <a href="https://theotherdata.com" target="_blank" rel="noopener">The Other Data</a> explains stocks with offbeat public data like paperboard output, airport lines, and FDA reports. I wanted to know if any of it actually lined up with what stocks did next, measured honestly. Its scoreboard grades 88 signals one by one, and I ran separate, tougher tests on the most promising ideas.</p>
+        <p>Can free public data predict stocks? <a href="https://theotherdata.com" target="_blank" rel="noopener">The Other Data</a> explains stocks with offbeat public data like paperboard output, airport lines, and FDA reports. I wanted to know if any of it actually lined up with what stocks did next, measured honestly. Its scoreboard grades 88 signals one by one, and I ran 15 separate, tougher tests on the most promising ideas.</p>
 
         <h2>2. What failed</h2>
         <p>To pass, a signal had to beat the better of "always guess up" and "always guess down" against the S&amp;P 500, and the bottom of its 95% range had to clear that bar too. Back-to-back calls in the same direction count as one event.</p>
         <div class="tbl"><table>
           <thead><tr><th>Signal → stock</th><th>Events</th><th>Beat the S&amp;P</th><th>Bar to clear</th><th>Result</th></tr></thead>
           <tbody>
-            <tr><td>Ski-country snowpack → Vail Resorts</td><td>63</td><td>47.6%</td><td>52.4%</td><td>Failed</td></tr>
-            <tr><td>Midwest/Northeast snowfall → Compass Minerals</td><td>46</td><td>52.2%</td><td>52.2%</td><td>Failed</td></tr>
-            <tr><td>US box office → Disney</td><td>109</td><td>46.8%</td><td>52.3%</td><td>Failed</td></tr>
-            <tr><td>Bird flu in egg flocks → Cal-Maine</td><td>9</td><td>66.7% (range 35.4–87.9%)</td><td>55.6%</td><td>Failed</td></tr>
-            <tr><td>Cattle on Feed → Tyson</td><td>43</td><td>44.2%</td><td>55.8%</td><td>Failed</td></tr>
-            <tr><td>Major power outages → Generac</td><td>39</td><td>64.1% (range 48.4–77.3%)</td><td>53.8%</td><td>Failed</td></tr>
-            <tr><td>Suez Canal transits → ZIM</td><td>8</td><td>62.5% (range 30.6–86.3%)</td><td>50.0%</td><td>Failed</td></tr>
-            <tr><td>Insider open-market buys, top 500 stocks (1 month)</td><td>4,561</td><td>49.5%</td><td>50.6%</td><td>Failed</td></tr>
+            <tr><td data-label="Signal → stock">Ski-country snowpack → Vail Resorts</td><td data-label="Events">63</td><td data-label="Beat the S&amp;P">47.6%</td><td data-label="Bar to clear">52.4%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Midwest/Northeast snowfall → Compass Minerals</td><td data-label="Events">46</td><td data-label="Beat the S&amp;P">52.2%</td><td data-label="Bar to clear">52.2%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">US box office → Disney</td><td data-label="Events">109</td><td data-label="Beat the S&amp;P">46.8%</td><td data-label="Bar to clear">52.3%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Bird flu in egg flocks → Cal-Maine</td><td data-label="Events">9</td><td data-label="Beat the S&amp;P">66.7% (range 35.4–87.9%)</td><td data-label="Bar to clear">55.6%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Cattle on Feed → Tyson</td><td data-label="Events">43</td><td data-label="Beat the S&amp;P">44.2%</td><td data-label="Bar to clear">55.8%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Major power outages → Generac</td><td data-label="Events">39</td><td data-label="Beat the S&amp;P">64.1% (range 48.4–77.3%)</td><td data-label="Bar to clear">53.8%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Suez Canal transits → ZIM</td><td data-label="Events">8</td><td data-label="Beat the S&amp;P">62.5% (range 30.6–86.3%)</td><td data-label="Bar to clear">50.0%</td><td data-label="Result">Failed</td></tr>
+            <tr><td data-label="Signal → stock">Insider open-market buys, top 500 stocks (1 month)</td><td data-label="Events">4,561</td><td data-label="Beat the S&amp;P">49.5%</td><td data-label="Bar to clear">50.6%</td><td data-label="Result">Failed</td></tr>
           </tbody>
         </table></div>
         <p>Six SEC filing signals had their rule picked on 2012–2020, then were checked once on 2021–2026. None was confirmed:</p>
         <div class="tbl"><table>
           <thead><tr><th>8-K / filing signal (2021–2026)</th><th>Events</th><th>Called right vs S&amp;P</th><th>Bar to clear</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>8-K 4.02 non-reliance</td><td>595</td><td>63.5%</td><td>64.9%</td><td>Not confirmed</td></tr>
-            <tr><td>8-K 4.01 auditor change</td><td>1,726</td><td>66.7%</td><td>63.0%</td><td>Under review, same small-company problem</td></tr>
-            <tr><td>8-K 3.01 delisting notice</td><td>3,687</td><td>36.3%</td><td>61.7%</td><td>Not confirmed</td></tr>
-            <tr><td>8-K 5.02 officer/director change</td><td>27,653</td><td>39.8%</td><td>59.0%</td><td>Not confirmed</td></tr>
-            <tr><td>8-K 5.02 CFO departure</td><td>17,126</td><td>38.6%</td><td>58.9%</td><td>Not confirmed</td></tr>
-            <tr><td>Schedule 13D</td><td>3,474</td><td>39.1%</td><td>59.2%</td><td>Not confirmed</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">8-K 4.02 non-reliance</td><td data-label="Events">595</td><td data-label="Called right vs S&amp;P">63.5%</td><td data-label="Bar to clear">64.9%</td><td data-label="Status">Not confirmed</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">8-K 4.01 auditor change</td><td data-label="Events">1,726</td><td data-label="Called right vs S&amp;P">66.7%</td><td data-label="Bar to clear">63.0%</td><td data-label="Status">Under review</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">8-K 3.01 delisting notice</td><td data-label="Events">3,687</td><td data-label="Called right vs S&amp;P">36.3%</td><td data-label="Bar to clear">61.7%</td><td data-label="Status">Not confirmed</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">8-K 5.02 officer/director change</td><td data-label="Events">27,653</td><td data-label="Called right vs S&amp;P">39.8%</td><td data-label="Bar to clear">59.0%</td><td data-label="Status">Not confirmed</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">8-K 5.02 CFO departure</td><td data-label="Events">17,126</td><td data-label="Called right vs S&amp;P">38.6%</td><td data-label="Bar to clear">58.9%</td><td data-label="Status">Not confirmed</td></tr>
+            <tr><td data-label="8-K / filing signal (2021–2026)">Schedule 13D</td><td data-label="Events">3,474</td><td data-label="Called right vs S&amp;P">39.1%</td><td data-label="Bar to clear">59.2%</td><td data-label="Status">Not confirmed</td></tr>
           </tbody>
         </table></div>
+        <p>For several signals, the direction chosen on 2012–2020 reversed in 2021–2026, which is why their hit rates fall far below the bar.</p>
         <p>Full list of what was tried: <a href="https://theotherdata.com/track#v2-h" target="_blank" rel="noopener">the tougher tests on /track</a>.</p>
 
         <h2>3. How I kept it honest</h2>
@@ -97,7 +100,7 @@
 
         <h2>4. Bugs I caught</h2>
         <ul>
-          <li><strong>Claims without proof.</strong> The AI agent I built with once reported tests it hadn't actually run. Since then, every claim needs a results table behind it.</li>
+          <li><strong>Claims without proof.</strong> The AI agent I built with reported results for four signals before it had run them. When I asked for the tables, it admitted it hadn't tested them yet. Since then, every claim needs a results table behind it.</li>
           <li><strong>The shrinking Apple.</strong> An early insider-buying test showed insider buys lagging by about 1.6% a month. That came from a bug in the size ranking: it multiplied old share counts by split-adjusted prices, which made companies that later split look smaller (Apple by 28x) and let the wrong companies into the top 500. After the fix, Apple, Microsoft, JPMorgan, Exxon and Johnson &amp; Johnson are in the top 500 every month from 2012 to 2026, and the insider-buying signal disappeared.</li>
         </ul>
 
@@ -106,8 +109,8 @@
         <div class="tbl"><table>
           <thead><tr><th>Period</th><th>Events</th><th>Avg vs similar-sized stocks (3 months)</th><th>95% range</th></tr></thead>
           <tbody>
-            <tr><td>2012–2020</td><td>2,872</td><td>−3.90%</td><td>−5.42% to −2.37%</td></tr>
-            <tr><td>2021–2026</td><td>3,881</td><td>−4.16%</td><td>−5.55% to −2.78%</td></tr>
+            <tr><td data-label="Period">2012–2020</td><td data-label="Events">2,872</td><td data-label="Avg vs similar-sized stocks (3 months)">−3.90%</td><td data-label="95% range">−5.42% to −2.37%</td></tr>
+            <tr><td data-label="Period">2021–2026</td><td data-label="Events">3,881</td><td data-label="Avg vs similar-sized stocks (3 months)">−4.16%</td><td data-label="95% range">−5.55% to −2.78%</td></tr>
           </tbody>
         </table></div>
         <p>At 1 month, it's not proven.</p>
