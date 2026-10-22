@@ -10,6 +10,7 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Live (Oct 22): /bilingual-websites-chicago/ and /ai-visibility-checker/, linked from homepage project cards (bilingual page also from /es).
 
 ## Decisions (newest first)
+- 2026-10-22: Nick approved casual outreach texts. Rewrote batch 2 (#26-50) in /workspace/prospects/messages-batch2.md: short, no links, yes/no question; send nickcastrobuilds.com only after they reply. Republished private /o-85kewn4w/ (noindex, unlinked) with build_page.py --batch 2 --out into this repo. Note: build_page.py's default output, /workspace/portfolio/site, is an old clone that's behind main. Don't push from it.
 - 2026-10-22: Nick approved: AGENTS.md is no longer served on the live site (listed in .vercelignore). It stays in GitHub.
 - 2026-10-22: Nick approved both draft pages. Merged to main, added homepage card links (and /es link to the bilingual page), published, submitted via IndexNow. These are new pages, not changes to existing pages; the 4-week wait applies before judging them.
 - 2026-10-22: Drafted two SEO pages from the ideas board on a branch with a Vercel preview only (approval period). Skipped a third "15 stock signals" post because /stock-signals already covers it; a duplicate page would compete with it.
