@@ -7,8 +7,11 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Live: the homepage, the Spanish homepage (/es), the stock-signals case study (/stock-signals), the book page, and the resume PDF.
 - In progress: the weekly Google ranking program (Search Console, read-only). Through Nov 16, 2026, SEO changes are only proposed and wait for Nick's OK.
 - Open pull requests: none.
+- Live (Oct 22): /bilingual-websites-chicago/ and /ai-visibility-checker/, linked from homepage project cards (bilingual page also from /es).
 
 ## Decisions (newest first)
+- 2026-10-22: Nick approved both draft pages. Merged to main, added homepage card links (and /es link to the bilingual page), published, submitted via IndexNow. These are new pages, not changes to existing pages; the 4-week wait applies before judging them.
+- 2026-10-22: Drafted two SEO pages from the ideas board on a branch with a Vercel preview only (approval period). Skipped a third "15 stock signals" post because /stock-signals already covers it; a duplicate page would compete with it.
 - 2026-10-21: Added this file so every AI stays in sync without Nick relaying messages.
 - 2026-10-21: The SEO approval period runs through Nov 16. Starting Nov 23, bots may make one logged change per page on their own.
 - 2026-10-20: Standing rule to commit to GitHub before publishing and confirm the live site matches main.

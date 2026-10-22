@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case study: building an AI visibility checker for local businesses — Nick Castro</title>
+  <meta name="description" content="How I built Does AI Know My Business?: a Gemini agent with Google Search grounding, a plain-code website audit, a transparent 100-point score, and English/Spanish reports.">
+  <script src="/ga.js"></script>
+  <link rel="canonical" href="https://nickcastrobuilds.com/ai-visibility-checker/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Nick Castro">
+  <meta name="theme-color" content="#1d4ed8">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nick Castro">
+  <meta property="og:url" content="https://nickcastrobuilds.com/ai-visibility-checker/">
+  <meta property="og:title" content="Case study: building an AI visibility checker for local businesses">
+  <meta property="og:description" content="How I built Does AI Know My Business?: a Gemini agent with Google Search grounding, a plain-code website audit, a transparent 100-point score, and English/Spanish reports.">
+  <meta property="og:image" content="https://nickcastrobuilds.com/images/doesaiknowmybusiness-1000.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/inter-latin.woff2) format('woff2')}
+  .cs p,.cs li{color:var(--muted);margin-bottom:14px}.cs h1{font-size:clamp(1.9rem,4.5vw,2.6rem);line-height:1.15;margin-bottom:14px}.cs h2{font-size:1.45rem;margin:30px 0 12px}.cs ul{padding-left:20px;margin-bottom:14px}
+  .tbl{overflow-x:auto;margin:6px 0 14px;border:1px solid var(--line);border-radius:var(--radius)}
+  .tbl table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+  .tbl th,.tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{background:#f8fafc;font-weight:700}.tbl tr:last-child td{border-bottom:0}
+  .big{font-size:1.15rem;color:inherit !important}.fine{font-size:.88rem}
+  @media (max-width:639px){.tbl{border:0;overflow:visible}.tbl table{min-width:0}.tbl thead{display:none}.tbl tr{display:block;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;padding:6px 12px;background:#fff}.tbl td{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:7px 0;text-align:right}.tbl td:first-child{display:block;text-align:left;font-weight:700;color:inherit}.tbl td:first-child::before{content:none}.tbl td::before{content:attr(data-label);font-weight:600;text-align:left;color:var(--muted)}.tbl tr td:last-child{border-bottom:0}}
+  </style>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">Nick Castro</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main">
+        <a href="/#work" aria-current="page">Work</a>
+        <a href="/book/">Book</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+    <main id="main" class="cs">
+    <section class="section"><div class="wrap">
+
+        <p class="fine">Case study · Does AI Know My Business?</p>
+        <h1>Building an AI visibility checker for local businesses</h1>
+        <p class="big">More people ask AI assistants for a roofer or a bakery. I built a free tool that shows a local business owner whether AI recommends them, why a competitor gets named instead, and exactly what to fix.</p>
+        <p><a class="btn btn-small" href="https://doesaiknowmybusiness.com" target="_blank" rel="noopener">Try it live →</a></p>
+
+        <h2>1. The problem</h2>
+        <p>Local business owners don't know whether AI assistants recommend them. They can't see what the AI searched, what it read, or why someone else showed up first. Most "AI SEO" advice is vague, so I wanted a check that shows its work.</p>
+
+        <h2>2. How it works</h2>
+        <p>An owner enters their business name, city, and trade. An AI agent then runs four steps that stream onto the screen as they happen:</p>
+        <ul>
+          <li><strong>Asks AI like a customer.</strong> Google Gemini with Google Search grounding answers a question like "Who are the best roofers in Chicago, IL?" The app parses the list, fuzzy-matches the business name, and records its rank, the competitors named, the searches run, and the sources read.</li>
+          <li><strong>Fact-checks what AI knows.</strong> It asks Gemini for the business's address, phone, website, hours, and reviews, and compares them with the business's own website.</li>
+          <li><strong>Inspects the website with plain code, no AI.</strong> HTTPS, mobile viewport, title and meta tags, schema.org LocalBusiness markup, robots.txt rules for AI crawlers (GPTBot, Google-Extended, PerplexityBot, ClaudeBot and others), sitemap, response time, and tap-to-call.</li>
+          <li><strong>Scores and plans.</strong> A 100-point rubric that is shown to the user, a prioritized fix plan, and ready-to-paste LocalBusiness code. One short Gemini call writes the plain-English summary.</li>
+        </ul>
+
+        <h2>3. What I built</h2>
+        <ul>
+          <li>Static HTML, CSS, and vanilla JavaScript with no framework or web fonts, so it loads fast on phones.</li>
+          <li>One Vercel Function that streams each step to the browser as it runs.</li>
+          <li>Gemini's REST API with the Google Search tool, called directly with no SDK, and a model fallback list.</li>
+          <li>An English/Spanish toggle, shareable report links, print-to-PDF, and a clearly labeled example report.</li>
+          <li>An optional "email me this report" step that hands the lead to me, with a text-or-email fallback so a follow-up never depends on the database.</li>
+          <li>An automated test suite covering the analysis, scoring, website check, sharing, leads, and SEO.</li>
+        </ul>
+
+        <h2>4. Honest lessons</h2>
+        <ul>
+          <li><strong>Make AI show its work.</strong> A bare score isn't believable. Streaming the real searches and sources, and showing the rubric, is what makes the result trustworthy.</li>
+          <li><strong>Don't use AI where code is better.</strong> The website check is plain code. It's cheaper, faster, and gives the same answer every time.</li>
+          <li><strong>Free tools need cost limits from day one.</strong> Checks are capped per visitor and per day, results are cached for 7 days, and each check makes 3 model calls, which keeps Google Search grounding inside the free 5,000 searches a month.</li>
+          <li><strong>Fetching someone else's website is a security risk.</strong> The server only fetches public addresses, with size and time limits.</li>
+          <li><strong>Plan for missing pieces.</strong> Without a database, the app still works in memory, and sharing falls back to putting the report in the link itself.</li>
+        </ul>
+
+        <h2>5. Results so far</h2>
+        <p>8+ AI visibility checks completed, and it has already captured its first lead. It is small and early, and I'm reporting it as it is.</p>
+
+        <p><a class="btn btn-small" href="/#work">← Back to my work</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Nick Castro · <a href="/">nickcastrobuilds.com</a></div>
+  </footer>
+  <script src="/main.js"></script>
+</body>
+</html>
