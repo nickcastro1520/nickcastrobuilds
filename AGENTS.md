@@ -10,6 +10,7 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Live (Oct 22): /bilingual-websites-chicago/ and /ai-visibility-checker/, linked from homepage project cards (bilingual page also from /es).
 
 ## Decisions (newest first)
+- 2026-10-23: Client Pipeline added private /w-aue3mb/ (noindex, unlinked, not in sitemap) — its walk-in outreach tool page, mirroring the /o-85kewn4w/ text-outreach page.
 - 2026-10-22: Nick approved: resume PDF Triton College dates changed 2011–2019 → 2011–2013 (only change). Source: /workspace/jobs/Nick-Castro-AI-Builder-Resume.html, printed with headless Chrome. No other 2011–2019 dates in the site.
 - 2026-10-22: Nick approved casual outreach texts. Rewrote batch 2 (#26-50) in /workspace/prospects/messages-batch2.md: short, no links, yes/no question; send nickcastrobuilds.com only after they reply. Republished private /o-85kewn4w/ (noindex, unlinked) with build_page.py --batch 2 --out into this repo. Note: build_page.py's default output, /workspace/portfolio/site, is an old clone that's behind main. Don't push from it.
 - 2026-10-22: Nick approved: AGENTS.md is no longer served on the live site (listed in .vercelignore). It stays in GitHub.
