@@ -34,3 +34,5 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Only one AI edits a repo at a time. If Claude has an open pull request on this repo, don't edit until it's merged.
 - Commit to GitHub before publishing. Never put keys in code or chat.
 - Never claim a test ran unless you show its results.
+
+- 2026-10-23: w-aue3mb — added "Email security walk-ins (SPF/DKIM/DMARC)" section (3 email-auth leads: E&J Auto, Portage Family Dental, Filippini Family Dentistry) below the 5 website walk-ins; separate localStorage key, all JS in app.js per CSP.

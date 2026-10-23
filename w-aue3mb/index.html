@@ -44,6 +44,8 @@
   .btn.primary{background:var(--accent2);border-color:var(--accent2);color:#fff;}
   .btn.visit{background:transparent;}
   .btn.visit.on{background:var(--done);border-color:var(--done);color:#fff;}
+  .section-title{font-size:1.2rem;margin:26px 0 4px;padding-top:10px;border-top:1px solid var(--line);}
+  .section-sub{color:var(--muted);font-size:.85rem;margin-bottom:12px;}
   footer{color:var(--muted);font-size:.8rem;text-align:center;margin-top:22px;}
 </style>
 </head>
@@ -60,9 +62,16 @@
     </ul>
   </div>
 
+  <h2 class="section-title" style="border-top:none;padding-top:0;">Website walk-ins</h2>
   <div class="progress" id="progress"></div>
 
   <div id="cards"></div>
+
+  <h2 class="section-title">Email security walk-ins (SPF/DKIM/DMARC)</h2>
+  <div class="section-sub">Authorized email-authentication fixes &middot; DNS checked Oct 23, 2026 &middot; bring the one-pager</div>
+  <div class="progress" id="progress2"></div>
+
+  <div id="cards2"></div>
 
   <footer>NC Web Services &middot; tap "Mark as visited" to grey out a stop (saved on this device)</footer>
 
