@@ -27,6 +27,8 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Possible case studies for Homework Helper and Rocket Lander once they have real results.
 
 ## Rules
+- (2026-10-23) After any site change (new/edited pages, URLs, titles, content), message SEO & AEO Desk bot (priority) with what changed and the URLs.
+- CSP is script-src 'self': no inline <script>; put JS in external files.
 - Read AGENTS.md at the start of every session. Update it at the end with what changed and what's next, then commit.
 - Grok is the main builder. Claude is used for reviews and big decisions, and reads AGENTS.md to catch up.
 - Only one AI edits a repo at a time. If Claude has an open pull request on this repo, don't edit until it's merged.
