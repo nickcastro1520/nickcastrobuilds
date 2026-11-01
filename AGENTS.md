@@ -36,3 +36,4 @@ Nick Castro's builder portfolio. It shows recruiters and hiring managers the AI-
 - Never claim a test ran unless you show its results.
 
 - 2026-10-23: w-aue3mb — added "Email security walk-ins (SPF/DKIM/DMARC)" section (3 email-auth leads: E&J Auto, Portage Family Dental, Filippini Family Dentistry) below the 5 website walk-ins; separate localStorage key, all JS in app.js per CSP.
+- 2026-11-01: Monthly totals refresh (all-time GA4 + Search Console): AI checks 10+, lessons 19+, Roblox ideas 800+, Google appearances 3,500+.
